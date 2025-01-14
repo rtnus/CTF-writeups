@@ -56,7 +56,7 @@ Mình search gg VeraCrypt rồi tải về và đọc theo hướng dẫn của 
 
 ![image](https://github.com/user-attachments/assets/7771741c-ef4a-46f8-a3e0-f0ad9f0b78d9)
 
-Đến đây thì cần pass :)) và rồi mình lại mắc kẹt, thực sự không biết làm gì tiếp theo và rồi sau rất nhiều thời gian trao đổi với chat gpt thì mình cũng có được :)))
+Đến đây thì cần pass :)) và rồi mình lại mắc kẹt, thực sự không biết làm gì tiếp theo và rồi sau rất nhiều thời gian trao đổi với chat gpt thì mình cũng có được
 
 ![image](https://github.com/user-attachments/assets/3e4ff448-bbec-4243-9b2b-b871650cdefe)
 
@@ -76,7 +76,7 @@ Nhưng phiên bản mình tải lại không hỗ trợ
 
 ![image](https://github.com/user-attachments/assets/debe148e-1c0f-4330-bf07-9b91f8f2e9b0)
 
-Mình lại ngồi mày mò, sau một hồi thì thấy được 1 bài viết về TrueCrypt support
+Mình ngồi mày mò, sau một hồi thì thấy được 1 bài viết về TrueCrypt support
 
 ![image](https://github.com/user-attachments/assets/79158bc2-350f-4b34-a128-aee280efa3e1)
 
