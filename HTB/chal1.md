@@ -168,7 +168,7 @@ Mình lên cyberchef rồi thực hiện lần lượt để decode, với key v
 string key = "AKaPdSgV";
 string iv = "QeThWmYq";
 ```
-2 file đầu decode thì không thấy j, đến file thứ 3 thì flag đã xuất hiện 
+2 file đầu decode thì không thấy j, đến file thứ 3 thì flag đã xuất hiện 🙈
 
 ![image](https://github.com/user-attachments/assets/3d8f913c-ac68-420e-952c-233501efc148)
 
