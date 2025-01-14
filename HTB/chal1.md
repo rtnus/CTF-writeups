@@ -1,5 +1,5 @@
 # _TRUE SECRETS_
-Cùng mình giải quyết 1 bài được tag easy trong HTB nhé 😥
+Cùng mình giải quyết 1 bài được tag easy trong HTB nhé 🙉
 ![image](https://github.com/4venger/CTF-writeups/blob/main/HTB/Screenshot%202025-01-15%20031111.png)
 ## _Solution_
 Tải tệp zip về giải nén thì được 1 file .raw
