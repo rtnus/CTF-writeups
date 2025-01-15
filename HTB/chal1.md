@@ -152,7 +152,7 @@ class AgentServer {
 ```
 Đọc qua thì có thể thấy đây là kiểu mã hóa DES với key và iv cho sẵn như ở trên
 
-Với 3 file tiếp thì mình thấy những kí tự rất quen nhất là có dấu "=" :)) Khả năng là mã hóa base 64
+Với 3 file tiếp thì mình thấy những kí tự rất quen nhất là có dấu "=" :)) Khả năng là mã hóa base64
 
 ```
 wENDQtzYcL3CKv0lnnJ4hk0JYvJVBMwTj7a4Plq8h68=
@@ -168,7 +168,7 @@ Mình lên cyberchef rồi thực hiện lần lượt để decode, với key v
 string key = "AKaPdSgV";
 string iv = "QeThWmYq";
 ```
-2 file đầu decode thì không thấy j, đến file thứ 3 thì flag đã xuất hiện 🙈
+2 file đầu decode thì không thấy j, đến file thứ 3 thì flag xuất hiện 🙈
 
 ![image](https://github.com/user-attachments/assets/3d8f913c-ac68-420e-952c-233501efc148)
 
