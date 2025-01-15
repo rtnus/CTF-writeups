@@ -1,5 +1,5 @@
 # _REDTRAILS_
-Nâng độ khó lên xíu nhé, lần này thử thách ở mức medium và flag được chia làm 3 phần
+Lần này thử thách ở mức medium và flag được chia làm 3 phần
 ![image](https://github.com/user-attachments/assets/3580497d-6464-4fe6-a50a-cbbee1645a3b)
 
 Tải về tệp zip, giải nén ta có được 1 file .pcapng, mình dùng wireshark để phân tích
