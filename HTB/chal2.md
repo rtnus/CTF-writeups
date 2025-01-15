@@ -85,7 +85,7 @@ decoded_bytes = base64.b64decode(combined_base64)
 decoded_string = decoded_bytes.decode('utf-8')
 print(decoded_string)
 ```
-Giải mã ta được 1 cái gì đó nhìn chả hiểu
+Giải mã ta được 1 thứ gì đó..
 
 ![image](https://github.com/user-attachments/assets/96bbb608-cf11-4e11-a343-9405c40c1e5f)
 
