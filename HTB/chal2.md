@@ -179,7 +179,7 @@ alice7185@htb.local
 
 ```
 
-Mình ngồi lướt 1 lượt tại cũng khá ít nên đã tìm được **part2** của flag ở cuối 🙈
+Mình ngồi lướt 1 lượt tại cũng khá ít và đã tìm được **part2** của flag ở cuối 🙈
 
 ```
 $25
