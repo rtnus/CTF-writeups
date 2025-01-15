@@ -60,10 +60,6 @@ Mình search gg VeraCrypt rồi tải về và đọc theo hướng dẫn của 
 
 ![image](https://github.com/user-attachments/assets/3e4ff448-bbec-4243-9b2b-b871650cdefe)
 
-Nhưng nó lại hướng dẫn với vol2 :)) nên mình dùng vol3 -h để xem cách biểu diễn plugin 
-
-![image](https://github.com/user-attachments/assets/cc212681-37a3-4950-9f38-d2137a830958)
-
 Và đã có kết quả 
 
 ![image](https://github.com/user-attachments/assets/588f9296-e239-43c2-82c8-df9b0f70d8b3)
