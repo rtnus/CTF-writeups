@@ -42,7 +42,7 @@ Thử unzip 1 cái xem sao
 
 ![image](https://github.com/user-attachments/assets/3ca72934-c902-45ca-b7eb-d490ff034326)
 
-Lòi ra 1 file .tc, đến đây là mình méo biết làm thế nào nữa r nhưng theo thói quen khi gặp file lạ thì mình hay xem hex file rồi hỏi chat gpt :))
+Lòi ra 1 file .tc, theo thói quen khi gặp file lạ thì mình hay xem hex file rồi hỏi chat gpt
 
 ![image](https://github.com/user-attachments/assets/da372265-189e-4404-8f7b-88851aa16e6d)
 
