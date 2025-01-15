@@ -18,11 +18,11 @@ Follow HTTP stream của packet đó ta được một đoạn hội thoại gi�
 
 ![image](https://github.com/user-attachments/assets/30c631b4-966e-4b88-b92e-1b084bfa81de)
 
-Nhìn cũng chả hiểu gì nhưng mình thấy 1 đoạn mã rất giống base64 nhưng bị viết ngược, mình thử convert lại bằng python
+Nhìn cũng không hiểu lắm nhưng mình thấy 1 đoạn mã rất giống base64 nhưng bị viết ngược, mình thử convert lại bằng python
 
 ![image](https://github.com/user-attachments/assets/676810c5-0bff-423c-8679-b2f59c6ecd57)
 
-Lấy đoạn mã đó ném lên cyberchef from base64, ta được
+Lấy đoạn mã đó và dùng cyberchef from base64, ta được
 
 ```
 #!/bin/bash
@@ -89,7 +89,7 @@ Giải mã ta được 1 thứ gì đó..
 
 ![image](https://github.com/user-attachments/assets/96bbb608-cf11-4e11-a343-9405c40c1e5f)
 
-Nhưng lấy dược part 1 của flag
+Trong đó có part 1 của flag luôn
 ```
 HTB{r3d15_1n574nc35"
 ```
