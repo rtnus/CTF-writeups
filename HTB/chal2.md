@@ -391,7 +391,7 @@ Mình thử lần lượt, đầu tiên là password của các user ở eq 0 th
 
 ![image](https://github.com/user-attachments/assets/c559eac4-deff-4c0b-a593-59f0a951df46)
 
-Mình bỏ qua eq 2, đến với eq 3 thì cuối cùng cũng done
+Mình bỏ qua eq 0, đến với eq 2 thì cuối cùng cũng done
 
 ![image](https://github.com/user-attachments/assets/34df6b6f-69ab-4b44-8ea4-95ce34a21859)
 
