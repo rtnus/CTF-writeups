@@ -393,7 +393,7 @@ Mình thử lần lượt, đầu tiên là password của các user ở eq 0 th
 
 Mình bỏ qua eq 0, đến với eq 2 thì cuối cùng cũng done
 
-![image](https://github.com/user-attachments/assets/34df6b6f-69ab-4b44-8ea4-95ce34a21859)
+![image](https://github.com/user-attachments/assets/e837d605-93ac-4028-b473-cd81377c67c4)
 
 ```
 part3: _un3xp3c73d_7r41l5!}
