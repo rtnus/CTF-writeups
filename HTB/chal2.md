@@ -14,7 +14,7 @@ Follow HTTP stream của packet đó ta được một đoạn hội thoại gi�
 
 ![image](https://github.com/user-attachments/assets/30c631b4-966e-4b88-b92e-1b084bfa81de)
 
-Nhìn cũng không hiểu lắm nhưng mình thấy 1 đoạn mã rất giống base64 nhưng bị viết ngược, mình thử convert lại bằng python
+Nhìn cũng không hiểu lắm nhưng mình thấy 1 đoạn mã rất giống base64 nhưng bị viết ngược, mình thử reverse lại bằng python
 
 ![image](https://github.com/user-attachments/assets/676810c5-0bff-423c-8679-b2f59c6ecd57)
 
