@@ -352,13 +352,13 @@ phổ biến trong các hệ điều hành Unix-like (Linux, FreeBSD, v.v.) đ�
 ```
 Đối với eq 7 và 8 chỉ là cuộc hội thoại của giao thức TLS nên cũng kh có gì đặc biệt
 
-Mình nghĩ file ELF kia là bước cuối r, nên mình lưu hex về và lưu file .elf rồi đem đi dịch ngược
+Mình nghĩ file ELF kia là bước cuối r, nên mình lưu hex về và lưu file .elf rồi đem đi reverse
 
 ![image](https://github.com/user-attachments/assets/8ca87803-317b-4c3d-922e-056417d574e4)
 
 Mình có tải IDA về từ trc nhưng cũng không dùng bao giờ nên mình mất khá nhiều thời gian về cái này tại không hiểu gì về assembly
 
-Mình có hỏi chat gpt thì biết được là nếu Code được viết bằng C thì có thể dịch ngược tiếp để gần gũi hơn
+Mình có hỏi chat gpt thì biết được là nếu Code được viết bằng C thì có thể reverse tiếp bằng F5
 
 ![image](https://github.com/user-attachments/assets/ce5fc988-4ea7-4b9f-8331-a3590070e069)
 
