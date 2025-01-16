@@ -164,9 +164,10 @@ Mình lên cyberchef rồi thực hiện lần lượt để decode, với key v
 string key = "AKaPdSgV";
 string iv = "QeThWmYq";
 ```
-2 file đầu decode thì không thấy j, đến file thứ 3 thì flag xuất hiện 🙈
+Mình decode cả 3 file thì thấy flag ở dòng cuối 🙈
 
-![image](https://github.com/user-attachments/assets/3d8f913c-ac68-420e-952c-233501efc148)
+![image](https://github.com/user-attachments/assets/132dd15e-ad82-4189-8329-ac8692bd1473)
+
 
 ```
 FLAG: HTB{570r1ng_53cr37_1n_m3m0ry_15_n07_g00d}
