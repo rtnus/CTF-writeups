@@ -350,9 +350,9 @@ phổ biến trong các hệ điều hành Unix-like (Linux, FreeBSD, v.v.) đ�
 - Shared libraries (Thư viện dùng chung, như .so files).
 - Core dumps (Ảnh bộ nhớ của chương trình khi bị lỗi).
 ```
-Đối với eq 7 và 8 chỉ là cuộc hội thoại của giao thức TLS nên cũng kh có gì đặc biệt
+Đối với eq 7 và 8 chỉ là cuộc hội thoại của giao thức TLS, mình đã xem qua cũng kh có gì đặc biệt
 
-Mình nghĩ file ELF kia là bước cuối r, nên mình lưu hex về và lưu file .elf rồi đem đi reverse
+Nên mình lưu hex về và lưu file .elf rồi đem đi reverse
 
 ![image](https://github.com/user-attachments/assets/8ca87803-317b-4c3d-922e-056417d574e4)
 
