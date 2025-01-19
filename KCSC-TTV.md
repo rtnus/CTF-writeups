@@ -111,7 +111,6 @@ Và đây là số lượng file đã bị **encrypt**
 
 ![image](https://github.com/user-attachments/assets/8ac50783-b30c-4894-81c5-d19f4667ef90)
 
-
 Mình có viết 1 script Python để thực hiện điều này
 
 ```
@@ -203,6 +202,30 @@ Và đã có kết quả ở file **Important.enc**
 
 ![3](https://github.com/user-attachments/assets/43586728-f106-40dc-9300-fe38f3079069)
 
+Thêm format KCSC và có được flag
+
 ```
 Flag: KCSC{S0m3t1m3_R3co\_/ery_1s_EasieR_Th@n_y0u_Thought}
 ```
+
+
+# _HDSD_ _(FORENSICS)_
+
+![image](https://github.com/user-attachments/assets/5da2ad17-c163-4e64-998c-8e8023e4855d)
+
+## _Solution_
+
+Truy cập gg drive, mình nhận được một tệp .ad1
+
+Với cảnh báo của author, mình cho vô máy ảo và dùng **FTK imager** để phân tích
+
+![image](https://github.com/user-attachments/assets/7369af86-4001-4cbd-9972-b010237db52f)
+
+Mình sẽ kiểm tra các thư mục thường xuyên làm việc như **Download, Desktop, Documents**
+
+Tại **Download**, mình tìm thấy một số file trong đó có file **Voucher_hoc_bong_chuyen_auto_pass_mon.txt.cucked** nhưng với khá lạ khả năng cao là đã bị encrypt
+
+![image](https://github.com/user-attachments/assets/c6c7a113-ef19-426f-8779-b2b850b8269f)
+
+Sau một hồi ngồi mò khá lâu, thì mình tìm thấy một file **.tmp** trong thư mục ***users/SERVER/AppData/Local/Temp***
+
