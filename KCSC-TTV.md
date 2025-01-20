@@ -688,6 +688,15 @@ LIKE 'K%':
 -- -: Phần còn lại của truy vấn gốc bị bỏ qua do ký tự -- dùng để tạo bình luận trong SQL.
 ```
 
+Thử lần lượt các kí tự cho đến khi nhận được flag và đây là chữ K 
+
+![image](https://github.com/user-attachments/assets/322a97ed-beff-4a9b-b78f-bba57d64ba08)
+
+```
+Flag: KCSC{sql_injection_that_de_dung_khong_nao}
+```
+
+
 # _Trên đây là toàn bộ bài làm của mình khi chưa hết giải, sau khi kết thúc mình có solve thêm được 1 bài nữa_
 
 # _Invitation_ _(FORENSICS)_
