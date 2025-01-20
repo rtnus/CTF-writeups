@@ -577,7 +577,7 @@ Vòng lặp for (i = 0; i <= 23; ++i):
 Vòng lặp chạy 24 lần, tương ứng với số ký tự trong chuỗi cần giải mã (24 ký tự).
 ```
 
-Và đây là scrypt giải mã
+Và đây là script giải mã
 
 ```
 v2 = [
