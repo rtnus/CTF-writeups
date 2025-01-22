@@ -133,7 +133,7 @@ Và đây là số lượng file đã bị **encrypt**
 
 Mình có viết 1 script Python để thực hiện điều này
 
-```
+```python
 import base64
 import io
 import zlib
@@ -303,7 +303,7 @@ PCNAME: DESKTOP-SH94VUS
 
 Và đây là script giải mã
 
-```
+```python
 import os
 import hashlib
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
@@ -424,7 +424,7 @@ Flag: KCSC{the^?_cha^'t_KMA_la`_nhung~_niem`_dau}
 
 Tải về mình nhận được 1 file python với nội dung như sau
 
-```
+```python
 from Crypto.Util.number import *
 from math import gcd
 
@@ -455,7 +455,7 @@ Tổng quan đoạn mã trên:
 
 Và đây là script Python để lấy flag
 
-```
+```python
 from Crypto.Util.number import *
 from math import gcd
 import sympy
@@ -579,7 +579,7 @@ Vòng lặp chạy 24 lần, tương ứng với số ký tự trong chuỗi c�
 
 Và đây là script giải mã
 
-```
+```python
 v2 = [
     0xFDE7F1F3CBDBCBC3,
     0xFBD7FCAFE6E9EBD7,
@@ -743,7 +743,7 @@ Giải nén mình có được khá nhiều folder trong đó có các chương 
 
 Và đây là nội dung bên trong file 
 
-```
+```python
 import base64
 import json
 import os
@@ -929,7 +929,7 @@ Bot sẽ gửi các tệp dữ liệu (như mật khẩu, cookie) kèm theo thô
 
 Mình nhờ chatgpt viết 1 đoạn python để trích xuất từ trình duyệt các thông tin như (login data), (credits card), (history), (downloads) và gửi chúng đến **bot** -> nhận được phản hồi
 
-```
+```python
 import base64
 import json
 import os
