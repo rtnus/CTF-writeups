@@ -54,7 +54,7 @@ hL8FbEfp9L1261G
 ```
 Theo ý hiểu của mình thì đây là một đoạn mã Bash bao gồm một tập hợp các hàm mã hóa bằng Base64, giải mã và thực thi mã đã giải bằng lệnh Bash. Nhìn thấy base64 khá ngứa mắt nên viết 1 đoạn python để nối tất cả chúng lại
 
-```
+```python
 import base64
 
 base64_strings = [
