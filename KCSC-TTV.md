@@ -19,7 +19,7 @@ Mở file s.ps1 ra thì thấy có 1 đoạn base64
 
 Đem đi làm đẹp lại cho dễ đọc hơn
 
-```
+```python 
 # Define variables and types
 Set-Variable -Name "gxqh" -Value ([Type]"System.Security.Cryptography.CipherMode")
 $CipherPadding = [Type]"System.Security.Cryptography.PaddingMode"
