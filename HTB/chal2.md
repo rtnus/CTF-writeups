@@ -20,7 +20,7 @@ Nhìn cũng không hiểu lắm nhưng mình thấy 1 đoạn mã rất giống 
 
 Lấy đoạn mã đó và dùng cyberchef from base64, ta được
 
-```
+```bash
 #!/bin/bash
 
 lhJVXukWibAFfkv() {
