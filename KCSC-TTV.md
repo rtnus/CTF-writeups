@@ -1078,7 +1078,7 @@ Mình đã chạy đoạn mã này trên máy ảo và những thông tin trích
 
 ![image](https://github.com/user-attachments/assets/3a89fec3-7819-4f9d-990f-bd858879939c)
 
-Mình khá bất ngờ khi mở file .txt ra lại có hết những thông tin đăng nhập, lịch sử, ... trên máy thật của mình ( quả này mình đã nghĩ đến việc mấy anh tạo ra con bot sẽ nhìn thấy hết mất 😥)
+Mình khá bất ngờ khi mở file .txt ra lại có hết những thông tin đăng nhập, lịch sử, ... trên máy thật của mình
 
 Khi đc các anh báo lại thì mình vô phần profile của tài khoản mình ở trình duyệt trên máy thật thì phát hiện là mình đã đồng bộ 2 tài khoản lúc nào không hay 
 
@@ -1089,8 +1089,6 @@ Khi đc các anh báo lại thì mình vô phần profile của tài khoản mì
 **Và đây là máy ảo**
 
 ![image](https://github.com/user-attachments/assets/2702b0b9-8c46-48ba-93eb-b1306eb39711)
-
-Haizz đây đúng là 1 bài học của mình
 
 Quay trở lại vấn đề chính, là mình đã trích xuất được ra những file .txt ở kia nhưng vẫn kh biết làm cách nào để nhận được flag :(
 
@@ -1103,10 +1101,6 @@ Vô [đây](https://core.telegram.org/bots/api) để lấy api và hash về
 Mình clone link github đó về và thực hiện lần lượt theo hướng dẫn
 
 ![image](https://github.com/user-attachments/assets/df710174-556d-438e-904a-91ccfaae613a)
-
-Đến đây thì mình bị lỗi nên mình sử dụng môi trường ảo để cài
-
-![image](https://github.com/user-attachments/assets/411c9521-6660-4028-beb7-c593901e939c)
 
 Và sau đó là bước cuối 
 
