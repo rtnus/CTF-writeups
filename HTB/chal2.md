@@ -366,10 +366,8 @@ Nhìn mấy hàm quen thật nhưng thực sự cũng không hiểu gì, mình c
 
 ![image](https://github.com/user-attachments/assets/8545c6c7-738b-4cb2-a3e0-53af4a96e3df)
 
-```
-AES-256 (Advanced Encryption Standard 256-bit) là một thuật toán mã hóa khối đối xứng được sử dụng rộng rãi nhờ tính bảo mật và hiệu quả cao.
-Nó được chuẩn hóa bởi NIST (National Institute of Standards and Technology) và là tiêu chuẩn mã hóa chính cho dữ liệu nhạy cảm
-```
+
+> AES-256 (Advanced Encryption Standard 256-bit) là một thuật toán mã hóa khối đối xứng được sử dụng rộng rãi nhờ tính bảo mật và hiệu quả cao. Nó được chuẩn hóa bởi NIST (National Institute of Standards and Technology) và là tiêu chuẩn mã hóa chính cho dữ liệu nhạy cảm
 
 Mình cop toàn bộ đoạn Code đó hỏi chatGPT tiếp thì có được
 
@@ -382,16 +380,12 @@ Giải thích rất dài nhưng có 1 điểm là mục đích của nó đượ
 Mình xem lại các cuộc hội thoại vừa nãy thì đúng là có một số response từ server -> client được gửi bằng mã hex 
 
 Mình bắt đầu decode lần lượt, với key và iv của AES 256 là
-```
-h02B6aVgu09Kzu9QTvTOtgx9oER9WIoz // key
-YDP7ECjzuV7sagMN // iv
-```
 
-Mình thử lần lượt, đầu tiên là password của các user ở eq 0 thì kết quả không có gì
 
-![image](https://github.com/user-attachments/assets/c559eac4-deff-4c0b-a593-59f0a951df46)
+> h02B6aVgu09Kzu9QTvTOtgx9oER9WIoz // key
+> YDP7ECjzuV7sagMN // iv
 
-Mình bỏ qua eq 0, đến với eq 2 thì cuối cùng cũng done
+Mã hex lúc nãy mình có lưu lại tại eq2, decode là có flag
 
 ![image](https://github.com/user-attachments/assets/e837d605-93ac-4028-b473-cd81377c67c4)
 
