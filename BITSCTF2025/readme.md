@@ -306,7 +306,7 @@ Và 1 file âm thanh, mở ra nghe thấy có các tiếng bíp ngắn và dài 
 
 ![image](https://github.com/user-attachments/assets/2adc0e4f-143a-40bd-9df1-f67d136b7306)
 
-Đối với file .jpg thì dùng steghide với pass là vừa decode file âm thanh "SNOOOOOOPPPPPPP" (thực ra trong giải mình cũng méo nghĩ đến trường hợp này)
+Đối với file .jpg thì dùng steghide với pass là vừa decode file âm thanh "SNOOOOOOPPPPPPP"
 
 ![image](https://github.com/user-attachments/assets/6e5d6bfd-d784-4835-be89-3fcdc1dfcc06)
 
