@@ -278,6 +278,51 @@ Hmm lấy cái flag ở bên trên vừa nhập sai xuống đây là done
 FLAG: BITSCTF{h0pe_y0u_enj0yed_th1s_145e3f1a}
 ```
 
+# __Finders Keepers_STEGO (FORENSICS)_
+
+Hmm năm nay for toàn stego :<
+
+## _Solution_
+
+Bài cho 1 file ảnh weird.png dung lượng khá lớn nghi là bị nhúng 
+
+![image](https://github.com/user-attachments/assets/a6faeee6-670f-45ac-a751-a791ed3c6019)
+
+binwalk thử thì thấy có 1 file jpg và 1 file wav
+
+![image](https://github.com/user-attachments/assets/36e562e2-a78c-4607-bd12-83c9763b6836)
+
+Extract 2 file đó ra 
+
+Đây là file jpg
+
+![image](https://github.com/user-attachments/assets/5931771e-d612-4bca-95ae-73aae63235c2)
+
+Và 1 file âm thanh, mở ra nghe thấy có các tiếng bíp ngắn và dài nghi là mã MORSE
+
+![image](https://github.com/user-attachments/assets/9514086e-ab5f-4966-b36d-38fd81cbf171)
+
+Đem đi decode với bíp ngắn là dấu . còn bíp dài là dấu -
+
+![image](https://github.com/user-attachments/assets/2adc0e4f-143a-40bd-9df1-f67d136b7306)
+
+Đối với file .jpg thì dùng steghide với pass là vừa decode file âm thanh "SNOOOOOOPPPPPPP" (thực ra trong giải mình cũng méo nghĩ đến trường hợp này)
+
+![image](https://github.com/user-attachments/assets/6e5d6bfd-d784-4835-be89-3fcdc1dfcc06)
+
+Không đúng là do pass yêu cầu là full kí tự thường
+
+![image](https://github.com/user-attachments/assets/7c05507b-68e7-49b8-9e0f-43830de107cb)
+
+Ra một file flag.txt mở ra xem là có flag
+
+![image](https://github.com/user-attachments/assets/177839c8-40b6-48ae-9faa-4d5acedca089)
+
+```
+FLAG: BITSCTF{1_4m_5l33py_1256AE76}
+```
+
+
 
 
 
