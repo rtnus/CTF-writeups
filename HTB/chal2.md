@@ -383,6 +383,7 @@ Mình bắt đầu decode lần lượt, với key và iv của AES 256 là
 
 
 > h02B6aVgu09Kzu9QTvTOtgx9oER9WIoz // key
+
 > YDP7ECjzuV7sagMN // iv
 
 Mã hex lúc nãy mình có lưu lại tại eq2, decode là có flag
