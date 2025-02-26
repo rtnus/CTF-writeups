@@ -98,24 +98,6 @@ $9ozWfHXdm8eIBYru = "InV"+"okE"+"-ex"+"prE"+"SsI"+"ON" ; new-aliaS -Name PwN -Va
 ```
 
 Đoạn mã trên là một đoạn mã PowerShell được làm rối (obfuscation)
->
-Chuỗi Base64 bị đảo ngược
-- $wy7qIGPnm36HpvjrL2TMUaRbz = "..." ;
-- $9U5RgiwHSYtbsoLuD3Vf6 = $wy7qIGPnm36HpvjrL2TMUaRbz.ToCharArray() ;
-- [array]::Reverse($9U5RgiwHSYtbsoLuD3Vf6) ;
-Một chuỗi Base64 đã bị đảo ngược từng ký tự.
->
-Giải mã Base64
-- $FHG7xpKlVqaDNgu1c2Utw = [systeM.tEXT.ENCODIng]::uTf8.geTStRInG([sYsTeM.CoNVeRt]::FROMBase64StRIng("$9U5RgiwHSYtbsoLuD3Vf6")) ;
-- Sau khi đảo ngược, chuỗi này được decode từ Base64 về dạng chuỗi UTF-8, có thể chứa mã lệnh thực thi.
-
-Thực thi chuỗi đã giải mã
-- $9ozWfHXdm8eIBYru = "InV"+"okE"+"-ex"+"prE"+"SsI"+"ON" ;
-- new-aliaS -Name PwN -ValUe $9ozWfHXdm8eIBYru -fOrce ;
-- pwn $FHG7xpKlVqaDNgu1c2Utw ;
-- - "Invoke-Expression" bị tách thành nhiều phần để tránh bị phát hiện.
-- Tạo một alias "PwN" trỏ đến Invoke-Expression (iex).
-- - Thực thi nội dung đã giải mã, có thể là mã độc hoặc lệnh từ máy chủ tấn công
 
 Khá dài dòng, nhưng trc hết cứ reverse lại base64 rồi giải mã đã
 
@@ -171,13 +153,7 @@ $outStream.Close()
 Remove-Item $inputFile -Force
 ```
 
-Có thể thấy đoạn script trên sử dụng thuật toán mã hóa AES-256-CBC để mã hóa tệp flag.png -> flag.enc
-
-> Khóa & IV được tạo từ mật khẩu "MyS3cr3tP4ssw0rd" + salt bằng PBKDF2 (10,000 vòng lặp) với 
-> - $keySize = 32
-> - $ivSize = 16
-
-> Chế độ AES: CBC với PKCS7 padding
+Có thể thấy đoạn script trên sử dụng thuật toán mã hóa AES-256-CBC để mã hóa tệp flag.png thành flag.enc
 
 > Sau khi mã hóa thực hiện lệnh "Remove-Item $inputFile -Force" để xóa file gốc là flag.png
 
@@ -211,18 +187,6 @@ output_file = "flag_decrypted.png"
 decrypt_file(input_file, output_file, password, salt)
 print(f"File decrypted to: {output_file}")
 ```
-
-Chi tiết: 
-> PBKDF2(password, salt, key_size, count=iterations)
-> - Dùng PBKDF2 để tạo khóa AES từ mật khẩu và salt, đảm bảo tính bảo mật.
-
-> AES.new(key, AES.MODE_CBC, iv)
-> - Tạo một đối tượng AES sử dụng chế độ CBC.
-
-> Xử lý padding (PKCS7)
-> - padding_length = plaintext[-1] → Lấy số byte padding từ cuối plaintext.
-> - plaintext = plaintext[:-padding_length] → Xóa padding.
-
 Tiến hành giải mã ra được 1 file ảnh
 
 ![image](https://github.com/user-attachments/assets/ab4f7be6-7da5-4d4a-b566-62008a701c77)
