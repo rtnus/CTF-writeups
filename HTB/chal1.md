@@ -84,7 +84,7 @@ Mở ổ đĩa mới tạo ra thì thấy có 1 file .cs và một folder seesio
 
 ![image](https://github.com/user-attachments/assets/543bb8dd-5b7c-42b2-a6c9-e1423bbb2f9a)
 
-```
+```C#
 using System;
 using System.IO;
 using System.Net;
