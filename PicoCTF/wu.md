@@ -31,7 +31,7 @@ Mình tìm đc cái này, save nó về
 
 Dùng thư viện stepic của python là có flag
 
-```
+```python
 import stepic
 from PIL import Image
 
