@@ -382,9 +382,9 @@ Mình xem lại các cuộc hội thoại vừa nãy thì đúng là có một s
 Mình bắt đầu decode lần lượt, với key và iv của AES 256 là
 
 
-> h02B6aVgu09Kzu9QTvTOtgx9oER9WIoz // key
+> KEY: h02B6aVgu09Kzu9QTvTOtgx9oER9WIoz
 
-> YDP7ECjzuV7sagMN // iv
+> IV: YDP7ECjzuV7sagMN
 
 Mã hex lúc nãy mình có lưu lại tại eq2, decode là có flag
 
