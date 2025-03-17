@@ -21,6 +21,31 @@ Decode base64
 
 ![image](https://github.com/user-attachments/assets/8b3dc6ee-4f92-4ff2-a55e-32a86d7c1a15)
 
+# _Flag are stepic_ _(FORSENSICS)_
+
+Bài cho 1 trang web gồm các lá cờ, theo gợi ý thì tìm lá cở của đất nước không tồn tại là sẽ có flag
+
+![image](https://github.com/user-attachments/assets/18de0ec4-6fa5-4856-80eb-54618cfa2d6d)
+
+Mình tìm đc cái này, save nó về
+
+Dùng thư viện stepic của python là có flag
+
+```
+import stepic
+from PIL import Image
+
+# Mở ảnh đã giấu tin
+img = Image.open("upz.png")
+
+# Giải mã dữ liệu
+hidden_data = stepic.decode(img)
+print("Dữ liệu ẩn:", hidden_data)
+```
+
+```
+FLAG: picoCTF{fl4g_h45_fl4g51d83cb1}
+```
 # _Bitlocker-1_ _(FORSENSICS)_
 
 ![image](https://github.com/user-attachments/assets/c8c75875-491a-4382-8bd8-720dc64db09e)
