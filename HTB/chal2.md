@@ -362,7 +362,7 @@ Mình có hỏi chat gpt thì biết được là nếu Code được viết b�
 
 ![image](https://github.com/user-attachments/assets/ce5fc988-4ea7-4b9f-8331-a3590070e069)
 
-Nhìn mấy hàm quen thật nhưng thực sự cũng không hiểu gì, mình cố gắng đọc thật kĩ code xem có gì không thì thấy có dòng chữ
+Nhìn sơ qua thì thấy mã hóa AES
 
 ![image](https://github.com/user-attachments/assets/8545c6c7-738b-4cb2-a3e0-53af4a96e3df)
 
