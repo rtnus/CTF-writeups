@@ -215,12 +215,7 @@ Ngồi mò thêm các thư mục khác xem có gì không thì phát hiện tạ
 
 ![image](https://github.com/user-attachments/assets/6480ee19-4f19-4ad6-8441-50917f101cfa)
 
-File trên là một extension cho Visual Studio Code (VSCode) được viết bằng JavaScript (TypeScript chuyển đổi sang JavaScript) và sử dụng Node.js APIs
-
-- Mục đích chính là kích hoạt lệnh rs để chạy 1 đoạn powershell tạm thời (temp0001) trong thư mục C:\Users\vboxuser\AppData\Local\Temp\
-- Chạy tập tin PowerShell này với quyền Bypass ExecutionPolicy
-
-Hmm cũng không quan tâm lắm nhưng thấy có 1 dòng chữ khá giống base64 ở gần cuối 
+Thấy có 1 dòng chữ khá giống base64 ở gần cuối 
 
 ![image](https://github.com/user-attachments/assets/244fd8e1-f4a0-4929-931d-25dc510625c3)
 
