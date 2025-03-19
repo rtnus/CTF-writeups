@@ -143,9 +143,9 @@ Và đã lấy được flag ở file flag.txt nằm trong __/root__
 
 ![image](https://github.com/user-attachments/assets/bf6b42cf-c166-49ee-9f70-fe3738e191b9)
 
-```
+`
 FLAG: picoCTF{B1tl0ck3r_dr1v3_d3crypt3d_9029ae5b}
-```
+`
 
 
 
