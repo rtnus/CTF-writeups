@@ -252,7 +252,6 @@ Data sẽ được lấy từ imap trong wireshark
 
 Ở luồng tcp.stream 35 sẽ lấy được đáp án
 
-Microsoft Windows [Version 10.0.19045.5487]
 ```
 (c) Microsoft Corporation. All rights reserved.
 
