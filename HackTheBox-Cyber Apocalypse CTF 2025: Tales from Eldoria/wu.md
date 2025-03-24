@@ -255,7 +255,7 @@ Tiếp theo là hàm mã hóa xor
 
 Hàm sử dụng một mảng byte cố định gồm 256 phần tử làm khóa (key)
 
-Đến đây mình bị stuck vì rõ ràng hàm tên là Xor nhưng mình đã thử rất nhiều cách để giải mã mà kh thể nào ra được
+Đến đây là mình bị stuck, vì ban đầu mình nghĩ thì chỉ là xor giữa key và data xong base64 encrypt thông thường nhưng thử rất nhiều script giải mã mà kh cho ra kết quả mong muốn
 
 # _Cave Expedition_ _(FORSENSICS)_
 
