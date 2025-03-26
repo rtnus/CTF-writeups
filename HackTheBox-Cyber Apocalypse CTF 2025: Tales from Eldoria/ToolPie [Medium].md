@@ -221,7 +221,7 @@ Answer: 194.59.6.66
 Answer: execute
 
 3. What is the name of the obfuscation tool used by the attacker?
-Answer: Py-Fuscate
+Answer: Py-fuscate
 
 4. What is the IP address and port used by the malware to establish a connection with the Command and Control (C2) server?
 Answer: 13.61.7.218:55155
