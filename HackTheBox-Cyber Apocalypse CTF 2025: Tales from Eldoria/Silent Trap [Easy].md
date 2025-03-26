@@ -54,12 +54,10 @@ Unzip nhận được 1 file Eldoria_Balance_Issue_Report.pdf.exe
 
 Giờ đi tìm md5 thôi, mình sử dụng Virustotal
 
-![image](https://github.com/user-attachments/assets/329393e8-f46f-4de2-b36e-57d84adae115)
-
-Đỏ ngàu luôn mà 😥
+![image](https://github.com/user-attachments/assets/2df956ab-8963-4b4c-a4b4-717135f5f403)
 
 ```
-Answer: 5236676355a82362102e0d2ae5274a89cd9198e23bcf0a83609aea15fa111604
+Answer: c0b37994963cc0aadd6e78a256c51547
 ```
 
 >4. What credentials were used to log into the attacker's mailbox? (Format: username:password)
