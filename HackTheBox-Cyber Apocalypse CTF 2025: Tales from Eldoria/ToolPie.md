@@ -21,8 +21,9 @@ Có thể thấy client thực hiện gửi một chuỗi __ec2amaz-bktvi3e\admi
 => Có thể ấn công tải xuống dữ liệu nhạy cảm từ server mục tiêu
 
 ```
-Answer: 13.61.177.218
+
 ```
 
 >2. What is the name of the endpoint exploited by the attacker?
 
+Dựa theo IP 
