@@ -14,4 +14,14 @@ Vì data được lấy từ điện thoại android nên mình dùng ALEAPP đ�
 
 ![image](https://github.com/user-attachments/assets/569a90a0-e506-4d1d-b0e4-729412998bcf)
 
-Tìm suspicious link, mình vào phần _Chrome_Downloads_ thấy có đúng một đường link
+Tìm suspicious link, mình vào phần _Chrome-Downloads_ thấy có đúng một đường link và cũng chính là đáp án
+
+![image](https://github.com/user-attachments/assets/ef67dc46-6b7c-4a86-8108-985d5432aa3c)
+
+```
+Answer: https://ufile.io/57rdyncx
+```
+
+> Q2. What is the name of the downloaded APK?
+
+Mình tìm các phần Downloads trong ALEAPP report nhưng không có, nên chuyển hướng tìm tại các thư mục có trong data trên máy
