@@ -128,9 +128,9 @@ $b64Vb = "n2mmXaWy5pL4kpNWr7bcgEKxMeUx50MJ"
 ```
 
 Data được lấy ở dạng byte từ các file office, cụ thể ở đây mình nhận được là file map.pdf.secured
-- Thực hiện việc Xor data với key1 là $a53Va
-- Tiếp theo lấy data vừa rồi xor tiếp với key2 là $b64Vb
-- Cuối cùng là base64 encrypt, lưu file với đuôi .sercured và xóa file gốc ban đầu
+- Thực hiện việc Xor data với key1 là a53Va
+- Tiếp theo lấy data vừa rồi xor tiếp với key2 là b64Vb
+- Cuối cùng là base64 encoded, lưu file với đuôi .sercured và xóa file gốc ban đầu
 
 Script giải mã:
 
