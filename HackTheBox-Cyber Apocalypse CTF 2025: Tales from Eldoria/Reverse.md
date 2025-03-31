@@ -6,7 +6,7 @@ Bài cho file elf, mình dùng ida phân tích
 
 ![image](https://github.com/user-attachments/assets/39513ae9-d386-4e6c-bac2-f27c646d9b6f)
 
-Flag bị mã hó base64 rồi reverse
+Flag bị mã hóa base64 rồi reverse
 
 ![image](https://github.com/user-attachments/assets/7cc1ccb4-af90-4c77-bbdb-6d8fcfe25141)
 
