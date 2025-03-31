@@ -193,7 +193,7 @@ namespace imap_chanel
 Đến đây đã xác định được kiểu mã hóa cho đoạn email được gửi đi:
 - RC4 tạo keystream
 - Xor keystream với data
-- Base64 encrypt
+- Base64 encoded
 
 Giờ sẽ làm ngược lại và nhờ AI viết để decrypt
 
