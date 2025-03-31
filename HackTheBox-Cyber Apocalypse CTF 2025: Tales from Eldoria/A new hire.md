@@ -52,7 +52,7 @@
  
  ![image](https://github.com/user-attachments/assets/1944f076-b948-47c5-afb7-fc71aef2bb7e)
  
- Thấy có 1 key và 1 data khá dài, bên dưới dùng lệnh xor key với data và chạy lệnh exec để thực thi, mình thử thay thành print để in luôn kết quả nhưng vẫn bị mã hóa, loay hoay mãi thì thử base64 decrypt key thì có được flag :v Lừa vl
+ Thấy có 1 key và 1 data khá dài, bên dưới dùng lệnh xor key với data và chạy lệnh exec để thực thi, mình thử thay thành print để in luôn kết quả nhưng vẫn bị mã hóa, loay hoay mãi thì thử base64 decode key thì có được flag :v Lừa vl
  
  ```
  HTB{4PT_28_4nd_m1cr0s0ft_s34rch=1n1t14l_4cc3s!!}
