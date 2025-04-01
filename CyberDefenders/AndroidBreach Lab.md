@@ -76,4 +76,41 @@ Answer: APThreat@gmail.com
 
 ![image](https://github.com/user-attachments/assets/17fef572-c59b-4af7-82c7-3d7150477b56)
 
+Đăng nhập bằng acc khác thì lại được, tiếp tục nào
+
+![image](https://github.com/user-attachments/assets/b5f32285-1ac1-4a73-924c-6a1dd8c2a7fb)
+
+> Q7. The attacker has saved a file containing leaked company credentials before attempting to exfiltrate it. Based on the data, can you retrieve the credentials found in the leak?
+
+![image](https://github.com/user-attachments/assets/ae835929-4ab9-407e-822c-831394a1e411)
+
+Cùng phân tích tiếp đoạn mã vừa nãy, có thể thấy chương trình trên thực hiện thu thập dữ liệu từ bàn phím người dùng, sau đó gửi cho attacker, cuối cùng là lưu chúng vào file config.txt. 
+
+Tìm đến file đó là mình sẽ có được thông tin đăng nhập của người dùng
+
+![image](https://github.com/user-attachments/assets/fc047302-2a0e-4d07-9133-20c072b5a174)
+
+```
+Answer: hany.tarek@brightwave.com:HTarek@9711$QTPO309
+```
+
+> Q8. The malware altered images stored on the Android phone by encrypting them. What is the encryption key used by the malware to encrypt these images?
+
+Hỏi về mã hóa thì mình nhảy đến AES class nhưng không thấy, class này chỉ dùng để decode khóa được lưu dưới dạng base64, và tiến hành mã hóa, còn key thực sự được thiết lập trong MainTask, vào hàm Main là chúng ta sẽ lấy được key
+
+![image](https://github.com/user-attachments/assets/9aa501b2-0974-42f5-a5ff-25d6df8439e0)
+
+```
+Answer: 9bY$wQ7!cTz465TX
+```
+
+> Q9 .The employee stored sensitive data in their phone's gallery, including credit card information. What is the CVC of the credit card stored?
+
+Cái này mình phải dùng hint, tìm đến __data\media\0\Pictures\.aux__
+
+![image](https://github.com/user-attachments/assets/9a2f4272-7637-426f-9231-ba34c4454881)
+
+```
+Answer: 128
+```
 
