@@ -24,4 +24,56 @@ Answer: https://ufile.io/57rdyncx
 
 > Q2. What is the name of the downloaded APK?
 
-Mình tìm các phần Downloads trong ALEAPP report nhưng không có, nên chuyển hướng tìm tại các thư mục có trong data trên máy
+Mình tìm các phần Downloads trong ALEAPP report nhưng không có, dùng hint thi được dẫn đến path __data/media/0/Download__
+
+![image](https://github.com/user-attachments/assets/9a596f4f-cc10-47f9-a591-4cfc9ae382f1)
+
+```
+Answer: Discord_nitro_Mod.apk
+```
+
+> Q3. What is the malicious package name found in the APK?
+
+Câu này mình phải dùng hint 1 thì được chỉ cho dùng tool JADX
+
+Ngồi lướt 1 lượt khá lâu thì mình tìm thấy packet có tên __com.example.keylogger__ thấy có các hàm như mã hóa AES, sendmail thì mình đoán đây là malicious packet. Nhập vô thì thấy đúng
+
+![image](https://github.com/user-attachments/assets/32f30241-3119-408d-985d-44d9a283f1ab)
+
+```
+Answer: com.example.keylogger
+```
+
+> Q4. Which port was used to exfiltrate the data?
+
+Vào thẳng hàm SendEmail là thấy được
+
+![image](https://github.com/user-attachments/assets/bfd1494f-1484-4ce7-85a3-72bfec8161b1)
+
+```
+Answer: 465
+```
+
+> Q5. What is the service platform name the attacker utilized to receive the data being exfiltrated?
+
+Vẫn trong đoạn mã trên là ta thấy được host được sử dụng mailtrap.io
+
+```
+Answer: mailtrap.io
+```
+
+> Q6. What email was used by the attacker when exfiltrating data?
+
+Trong SendEmail class không hiển thị trực tiếp về email của attacker, mà thông tin này được thiết lập trong __BroadcastforAlarm class__
+
+![image](https://github.com/user-attachments/assets/ae835929-4ab9-407e-822c-831394a1e411)
+
+```
+Answer: APThreat@gmail.com
+```
+
+:)) Có 1 sự số là đang làm lại để viết wu thì lab bị khóa, méo hiểu
+
+![image](https://github.com/user-attachments/assets/17fef572-c59b-4af7-82c7-3d7150477b56)
+
+
