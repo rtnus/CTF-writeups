@@ -30,9 +30,10 @@ hide /usr/sbin/daemon &
 950     949     sudo    AES_IV  068131ad1d5c0c1516fce836d510ccce
 ```
 
-Thấy được dòng cuối thực hiện `hide /usr/sbin/daemon`, khả nghi nên dùng `linux.linux.pagecache.InodePages` để tìm file trong ram
+Thấy được dòng cuối thực hiện `hide /usr/sbin/daemon`, khả nghi nên dùng `linux.linux.pagecache.InodePages` để tìm file trong ram, lúc trong giải méo biết được plugin này nên chịu thua
 
 `python3 /home/kali/volatility3/vol.py -f challenge.lime linux.pagecache.InodePages --find /usr/sbin/daemon --dump`
+
 
 Dùng ida để reverse
 
