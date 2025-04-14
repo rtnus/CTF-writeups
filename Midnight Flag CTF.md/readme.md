@@ -1,6 +1,3 @@
-# Tham khảo:
-![image](https://github.com/user-attachments/assets/2a27acf8-5bee-4501-9954-38c4e173014e)
-
 # _APT 1337_
 
 - Liệt kê tiến trình:
@@ -183,6 +180,9 @@ Check ID
 ![image](https://github.com/user-attachments/assets/885dd9b3-c9df-4bdb-bb5e-0080b066931b)
 
 Done.
+
+## Tham khảo:
+![image](https://github.com/user-attachments/assets/2a27acf8-5bee-4501-9954-38c4e173014e)
 
 ## Tổng kết
 That was a great CTF challenge — I learned so many new things!
