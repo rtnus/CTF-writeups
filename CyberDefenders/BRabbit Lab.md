@@ -3,9 +3,8 @@
 ### Description
 > You are an investigator assigned to assist Drumbo, a company that recently fell victim to a ransomware attack. The attack began when an employee received an email that appeared to be from the boss. It featured the company’s logo and a familiar email address. Believing the email was legitimate, the employee opened the attachment, which compromised the system and deployed ransomware, encrypting sensitive files. Your task is to investigate and analyze the artifacts to uncover information about the attacker.
 
-Thông tin thêm về con mã độc vào cuối năm 2017 tại [đây](https://www.sitelock.com/blog/what-is-bad-rabbit-ransomware/)
-
-Giờ cùng đi phân tích con `ransomware` này nhé!
+Vì đây là con mã độc rất nổi tiếng cuối năm 2017, nên các thông tin về nó rất dễ tìm kiếm kể cả bản tiếng Việt
+> Đọc xong blog tại [đây](https://blogs.blackberry.com/en/2017/10/threat-spotlight-bad-rabbit-ransomware) là có hầu hết đáp án cho bài lab
 
 ## Solution
 
@@ -26,4 +25,14 @@ What is the family name of the ransomware identified during the investigation?
 ![image](https://github.com/user-attachments/assets/2f2ccb41-5133-498f-8428-fe106a66b9d2)
 
 `Answer: BadRabbit`
+
+>Q3. Upon execution, the ransomware dropped a file onto the compromised system to initiate its payload. Identifying this file is essential for understanding its infection process.
+What is the name of the first file dropped by the ransomware?
+
+Đọc blog trên là có, nhưng mình sẽ chọn cách reverse lại file  `.exe` kia (mấy khi được làm việc với mã độc nổi tiếng :v)
+
+
+
+
+`Answer: infpub.dat`
 
