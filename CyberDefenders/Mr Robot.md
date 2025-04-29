@@ -166,7 +166,7 @@ Có thể thấy được attacker dùng `wce.exe -w` là hiển thị mật kh�
 
 `Answer: flagadmin@1234`
 
->Q10. Machine:Target1 What is the std create data timestamp for the nbtscan.exe tool?
+>Q11. Machine:Target1 What is the std create data timestamp for the nbtscan.exe tool?
 
 `python2 /home/kali/volatility/vol.py -f Target1-1dd8701f.vmss --profile=Win7SP1x86_23418 timeliner > output1 `
 
@@ -174,6 +174,33 @@ Có thể thấy được attacker dùng `wce.exe -w` là hiển thị mật kh�
 
 `Answer: 2015-10-09 10:45:12 UTC`
 
->Q11. Machine:Target1 The attackers appear to have stored the output from the nbtscan.exe tool in a text file on a disk called nbs.txt. What is the IP address of the first machine in that file?
+>Q12. Machine:Target1 The attackers appear to have stored the output from the nbtscan.exe tool in a text file on a disk called nbs.txt. What is the IP address of the first machine in that file?
 
+![image](https://github.com/user-attachments/assets/420ccca4-d050-4afa-a5f2-d2c7499e7df9)
+
+![image](https://github.com/user-attachments/assets/7ce7fb80-0606-48fd-85d4-7e691bc31713)
+
+`Answer: 10.1.1.2`
+
+>Q13. Machine:Target1 What is the full IP address and the port was the attacker's malware using?
+
+Ở câu 4 đã phân tích
+
+`Answer: 180.76.254.120`
+
+>Q14. Machine:Target1 It appears the attacker also installed legit remote administration software. What is the name of the running process?
+
+![image](https://github.com/user-attachments/assets/a74d6941-120c-4a9d-8b7f-1862d5f51df3)
+
+`Answer: TeamViewer.exe`
+
+>Q15. Machine:Target1 It appears the attackers also used a built-in remote access method. What IP address did they connect to?
+
+![image](https://github.com/user-attachments/assets/689c5262-990a-4cfc-934a-1346b8ca5ceb)
+
+Thấy được attacker sử dụng cả RDP mặc định trong `windows`
+
+`Answer: 10.1.1.21`
+
+>Q16. Machine:Target2 It appears the attacker moved latterly from the front desk machine to the security admins (Gideon) machine and dumped the passwords. What is Gideon's password?
 
