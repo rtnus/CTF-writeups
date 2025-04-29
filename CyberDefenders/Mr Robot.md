@@ -81,4 +81,99 @@ Có khá nhiều file nhưng chỉ có 1 tại address `0x000000003e0bc5e0` là 
 
 >Q4. Machine:Target1 The malware appears to be leveraging process injection. What is the PID of the process that is injected?
 
-### too lazy to write hmm
+Dựa theo báo cáo của `virustotal` 
+
+![image](https://github.com/user-attachments/assets/4bcd9924-3fc1-49a1-88e5-5e7bebb34300)
+
+Kiểm tra bằng `netscan` thấy có `iexplore.exe` đang ở trạng thái `Established`
+
+![image](https://github.com/user-attachments/assets/6b025422-0a71-4a24-a4b4-664f55425ae9)
+
+Kết hợp với ip `180.76.254.120:22` cũng được tìm thấy trong trong report của `virustotal` 
+
+![image](https://github.com/user-attachments/assets/79531105-657d-4bb1-b9df-c0d9d4eaea2d)
+
+`Answer: 2996`
+
+>Q5. Machine:Target1 What is the unique value the malware is using to maintain persistence after reboot?
+
+Check các chỗ có thể thực hiện `persistence`, mình check trong `SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN` bằng plugin  `printkey`
+
+![image](https://github.com/user-attachments/assets/0ce47333-4343-468c-9818-402d78af6bc8)
+
+`Answer: MrRobot`
+
+>Q6. Machine:Target1 Malware often uses a unique value or name to ensure that only one copy runs on the system. What is the unique name the malware is using?
+
+Câu hỏi này liên quan đến 1 kĩ thuật mà malware thường sử dụng là ngăn chặn 1 lúc có nhiều bản sao để tránh xảy ra xung đột khi thực thi. Dùng plugin `mutantscan`
+
+`Mutex (mutant) là một loại đối tượng đồng bộ (synchronization object) trong Windows, dùng để ngăn nhiều tiến trình truy cập vào tài nguyên cùng lúc.`
+
+![image](https://github.com/user-attachments/assets/301dfe78-7207-45f2-a862-322a713bb3cb)
+
+Hoặc có thể xem trên `virustotal`
+
+![image](https://github.com/user-attachments/assets/5e714fea-4cce-4a02-8973-ae70ae2b5594)
+
+`Answer: fsociety0.dat`
+
+>Q7. Machine:Target1 It appears that a notorious hacker compromised this box before our current attackers. Name the movie he or she is from.
+
+![image](https://github.com/user-attachments/assets/de0e4aac-1370-4300-a69c-92abd85ec81c)
+
+Dùng filescan grep `users` thì có được tên của một diễn viên nổi tiếng trong phim `Hackers`
+
+![image](https://github.com/user-attachments/assets/bfc21757-55fa-439e-b952-61fc4ae0ced5)
+
+![image](https://github.com/user-attachments/assets/326af1e6-bb32-4db8-b4f6-5d3fd48cb1bd)
+
+`Answer: Hackers`
+
+>Q8. Machine:Target1 What is the NTLM password hash for the administrator account?
+
+```
+┌──(kali㉿kali)-[~/Downloads/temp_extract_dir (3)/target1]
+└─$ python2 /home/kali/volatility/vol.py -f Target1-1dd8701f.vmss --profile=Win7SP1x86_23418 hashdump                  
+Volatility Foundation Volatility Framework 2.6.1
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:79402b7671c317877b8b954b3311fa82:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+front-desk:1000:aad3b435b51404eeaad3b435b51404ee:2ae4c526659523d58350e4d70107fc11:::
+```
+
+`Answer: 79402b7671c317877b8b954b3311fa82`
+
+>Q9.Machine:Target1 The attackers appear to have moved over some tools to the compromised front desk host. How many tools did the attacker move?
+
+![image](https://github.com/user-attachments/assets/8a38df59-af9b-4260-a85e-9b79500f8a24)
+
+Hint cho mình hướng tìm trong `temp`
+
+![image](https://github.com/user-attachments/assets/fdd8d860-12d0-4d93-81ed-53188312fdf0)
+
+Có 3 thằng tool đáng ngờ là `wce.exe`, `getlsasrvaddr.exe` và `nbtscan.exe`
+
+`Answer: 3`
+
+>Q10. Machine:Target1 What is the password for the front desk local administrator account?
+
+Dùng `hashdump` xác định được hash nhưng khả năng đặt pass mạnh nên kh crack được
+
+Chuyển hướng sang kiểm tra `console` vì trong các tool mà attacker dùng có `wce.exe` đây là tool dùng để trích xuất password 
+
+![image](https://github.com/user-attachments/assets/875c21d1-09ce-4f94-bde2-55d91c74c3cf)
+
+Có thể thấy được attacker dùng `wce.exe -w` là hiển thị mật khẩu dưới dạng plaintext
+
+`Answer: flagadmin@1234`
+
+>Q10. Machine:Target1 What is the std create data timestamp for the nbtscan.exe tool?
+
+`python2 /home/kali/volatility/vol.py -f Target1-1dd8701f.vmss --profile=Win7SP1x86_23418 timeliner > output1 `
+
+![image](https://github.com/user-attachments/assets/75c6d7d6-1c93-41cb-966c-3565efa2b9e0)
+
+`Answer: 2015-10-09 10:45:12 UTC`
+
+>Q11. Machine:Target1 The attackers appear to have stored the output from the nbtscan.exe tool in a text file on a disk called nbs.txt. What is the IP address of the first machine in that file?
+
+
