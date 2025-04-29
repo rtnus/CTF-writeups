@@ -1,4 +1,4 @@
-# Mr Robot
+![image](https://github.com/user-attachments/assets/4bdbeab4-9593-4b2d-9afe-b7ff7383ee7d)# Mr Robot
 
 ![image](https://github.com/user-attachments/assets/67e04b4d-6332-4982-8afa-bbbf75f041be)
 
@@ -280,3 +280,16 @@ Dùng `netscan` rồi grep nó
 
 >Q23. Machine:POS In the POS malware whitelist. What application was specific to Allsafecybersec?
 
+![image](https://github.com/user-attachments/assets/73d82c6b-9caf-4593-8847-7820926af598)
+
+`Answer: allsafe_protector.exe`
+
+>Q24. Machine:POS What is the name of the file the malware was initially launched from?
+
+![image](https://github.com/user-attachments/assets/f7cd309b-3475-45e1-87f3-bd4bcc0cd1a8)
+
+Kiểm tra lịch sử trình duyệt mình dùng plugin `iehistory`, thấy được ip của C2 server tìm được ở câu 21
+
+![image](https://github.com/user-attachments/assets/25bcd886-4e18-4981-b9c7-9dddd652b8ff)
+
+`Answer: allsafe_update.exe`
