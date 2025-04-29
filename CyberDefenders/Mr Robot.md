@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/4bdbeab4-9593-4b2d-9afe-b7ff7383ee7d)# Mr Robot
+# Mr Robot
 
 ![image](https://github.com/user-attachments/assets/67e04b4d-6332-4982-8afa-bbbf75f041be)
 
@@ -290,6 +290,6 @@ Dùng `netscan` rồi grep nó
 
 Kiểm tra lịch sử trình duyệt mình dùng plugin `iehistory`, thấy được ip của C2 server tìm được ở câu 21
 
-![image](https://github.com/user-attachments/assets/25bcd886-4e18-4981-b9c7-9dddd652b8ff)
+![image](https://github.com/user-attachments/assets/4bdbeab4-9593-4b2d-9afe-b7ff7383ee7d)
 
 `Answer: allsafe_update.exe`
