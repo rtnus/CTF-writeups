@@ -204,3 +204,79 @@ Thấy được attacker sử dụng cả RDP mặc định trong `windows`
 
 >Q16. Machine:Target2 It appears the attacker moved latterly from the front desk machine to the security admins (Gideon) machine and dumped the passwords. What is Gideon's password?
 
+![image](https://github.com/user-attachments/assets/31d939d6-10db-4cd5-90b6-aa11c12c5cfa)
+
+Thấy được attacker dùng `wce.exe` để lấy thông tin mật khẩu và lưu chúng tại `gideon/w.tmp`
+
+![image](https://github.com/user-attachments/assets/fe180a10-4ea8-4dec-8ecb-015defdb303d)
+
+![image](https://github.com/user-attachments/assets/297c7837-919e-49e9-9558-dcdb0f8c624d)
+
+`Answer: t76fRJhS`
+
+>Q17. Machine:Target2 Once the attacker gained access to "Gideon," they pivoted to the AllSafeCyberSec domain controller to steal files. It appears they were successful. What password did they use?
+
+![image](https://github.com/user-attachments/assets/8ee4d558-27bd-43b1-be2a-88bdcd0ea940)
+
+`Answer: 123qwe!@#`
+
+>Q18. Machine:Target2 What was the name of the RAR file created by the attackers?
+
+Tại câu 17 có luôn đáp án
+
+`Answer: crownjewlez.rar`
+
+>Q19. Machine:Target2 How many files did the attacker add to the RAR archive?
+
+![image](https://github.com/user-attachments/assets/b0679147-37c1-4a30-bf44-52bc4ae9259b)
+
+Attacker đã thực hiện kết nối tới 1 ổ đĩa ngoài (không phải cục bộ) nên không thể dùng `filescan` để quét 
+
+Chuyển hướng sang việc dumpfile từ tiến trình thực thi
+
+![image](https://github.com/user-attachments/assets/e2e9868b-8cb0-415d-9d0b-cdeac28fb641)
+
+Dùng `memdump` thay vì `dumpfiles` vì cần dump toàn bộ bộ nhớ của tiến trình đó, chứ không chỉ riêng 1 số file riêng lẻ
+
+`python2 /home/kali/volatility/vol.py -f target2-6186fe9f.vmss --profile=Win7SP1x86_23418 memdump --pid=3048 -D out`
+
+Dumpfile thành công nhưng không đọc được luôn, tại windows sẽ mã hóa văn bản dưới dạng `UTF-16`, dùng `strings -el` để trích xuất và có thể đọc được những dữ kiện được mã hóa bằng `UTF-16`
+
+![image](https://github.com/user-attachments/assets/f4e98509-e7c4-46b7-a87a-84ae7dc85810)
+
+`Answer: 3`
+
+>Q20. Machine:Target2 The attacker appears to have created a scheduled task on Gideon's machine. What is the name of the file associated with the scheduled task?
+
+Tác vụ được lập lịch sẽ được lưu tại  `Windows\System32\Tasks`
+
+![image](https://github.com/user-attachments/assets/f1f6d482-1518-4e36-bb75-319c33ee33b9)
+
+Ngoài mấy thằng mặc định của `windows` thì lòi ra 1 anh `at1` khá khả nghi, dump nó về
+
+![image](https://github.com/user-attachments/assets/36818458-e79d-47d2-bd2a-1944e299c182)
+
+`Answer: 1.bat`
+
+>Q21. Machine:POS What is the malware CNC's server?
+
+Dùng `malfind` thấy cái này khả nghi nhất 
+
+![image](https://github.com/user-attachments/assets/28e4327e-15b4-444b-bf2b-d8e6cea8509d)
+
+Dùng `netscan` rồi grep nó
+
+![image](https://github.com/user-attachments/assets/adf5cfa8-25a7-4ee8-b775-be4807a9fae4)
+
+`Answer: 54.84.237.92`
+
+>Q22. Machine:POS What is the common name of the malware used to infect the POS system?
+
+![image](https://github.com/user-attachments/assets/a76e4bd1-4466-490d-8502-00cdea28ffbd)
+
+![image](https://github.com/user-attachments/assets/eca12210-c0dc-4ade-a0ba-c05405628d7a)
+
+`Answer: dexter`
+
+>Q23. Machine:POS In the POS malware whitelist. What application was specific to Allsafecybersec?
+
