@@ -126,3 +126,51 @@ Nối chúng lại theo đúng format và tính md5
 ![image](https://github.com/user-attachments/assets/aec69b82-ed95-4ba7-a72f-03f2445bc55b)
 
 `Flag: DVCTF{d0853c14865ee8562983c8faa9896120}`
+
+# _The Breakage_
+
+Bài cho 2 tệp .img của 2 điện thoại android, load vô FTK để extract `data` rồi phân tích
+
+![image](https://github.com/user-attachments/assets/e0019bfe-ba00-48dd-bd73-3e72330cd5c2)
+
+Bài mô tả cần `PIN` của phone1 và `Password` của phone2 để tạo thành flag `DVCTF{PIN:PASSWORD}`, hướng đi là crack bằng hashcat
+
+Bước đầu là phải dựng `hash` của cả 2 máy, đọc blog [này](https://www.pentestpartners.com/security-blog/cracking-android-passwords-a-how-to/) là làm được
+
+- Phone 1:
+
+![image](https://github.com/user-attachments/assets/25432728-b3fa-4802-ae74-a1e0b2a9ea40)
+
+Do `salt` lấy ra là số âm nên có 1 số khác biệt, dùng script sau:
+
+```python
+salt = -5927124708069638479
+
+# Chuyển số âm thành 8 byte (big endian, bù hai)
+salt_bytes = salt.to_bytes(8, byteorder='big', signed=True)
+
+# Chuyển bytes thành chuỗi hex lowercase
+salt_hex = salt_bytes.hex()
+
+print(salt_hex)
+```
+
+`md5`: FD55A53B6A21E46C41F82C2FDAE82620:adbe9f7b34117eb1
+
+Tiến hành crack: `hashcat -m 10 FD55A53B6A21E46C41F82C2FDAE82620:adbe9f7b34117eb1 -a 3 ?d?d?d?d?d?d?d?d`
+
+![image](https://github.com/user-attachments/assets/5453d837-08b5-4ff4-9565-43b1276bd147)
+
+=> PIN: `24681379`
+
+- Phone 2: Tương tự Phone 1
+
+`md5`: 1F2E0A7B9912B973B9FB1BB6AADCDE7C:9fb610735c471ce4
+
+`hashcat -m 10 1F2E0A7B9912B973B9FB1BB6AADCDE7C:9fb610735c471ce4 /home/kali/Documents/rockyou.txt `
+
+![image](https://github.com/user-attachments/assets/202fb3ca-633e-4d41-8daf-8f16609bd292)
+
+=> PASSWORD: `blueice309`
+
+```FLAG: DVCTF{24681379:blueice309}```
