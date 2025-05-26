@@ -155,7 +155,7 @@ salt_hex = salt_bytes.hex()
 print(salt_hex)
 ```
 
-`md5`: FD55A53B6A21E46C41F82C2FDAE82620:adbe9f7b34117eb1
+`md5 + salt`: FD55A53B6A21E46C41F82C2FDAE82620:adbe9f7b34117eb1
 
 Tiến hành crack: `hashcat -m 10 FD55A53B6A21E46C41F82C2FDAE82620:adbe9f7b34117eb1 -a 3 ?d?d?d?d?d?d?d?d`
 
@@ -165,7 +165,7 @@ Tiến hành crack: `hashcat -m 10 FD55A53B6A21E46C41F82C2FDAE82620:adbe9f7b3411
 
 - Phone 2: Tương tự Phone 1
 
-`md5`: 1F2E0A7B9912B973B9FB1BB6AADCDE7C:9fb610735c471ce4
+`md5 + salt`: 1F2E0A7B9912B973B9FB1BB6AADCDE7C:9fb610735c471ce4
 
 `hashcat -m 10 1F2E0A7B9912B973B9FB1BB6AADCDE7C:9fb610735c471ce4 /home/kali/Documents/rockyou.txt `
 
